@@ -26,4 +26,29 @@ gcc main.i -S -o main.s
 -	-	Cú pháp tạo file .c trong vscode:
 gcc -c main.s -o main.o
 -	Sau khi tạo ra file .o thì sẽ tạo ra file.exe thông qua quá trình linker 
+=====================buổi 2 macro========================
+
+1.lý thuyết:
+-   macro (vỹ mô) – xảy ra ở quá trình tiền xử lý preprocessor 
+-   macro thay thế tên macro thành giá trị mà ta muốn thay thế 
+-   Cú pháp:
+#define <ten_macro>  <gia_tri_macro>
+
+1.2 ifndef và ifdef
+Ifndef 	Ifdef
++cú pháp:
+#ifndef <tên_macro>
+// Do something here when <tên_macro> is not defined
+#define<tên_macro> <giá_trị_macro>
+#endif	+cú pháp:
+#ifdef <tên_macro>
+// Do not something here when <tên_macro> is not defined
+#define<tên_macro> <giá_trị_macro>
+#endif
++lý thuyết : được sử dụng để xem tên là <ten_macro> đã được định nghĩa hay chưa . Nếu đã được định nghĩa rồi thì toàn bộ các câu lệnh trong cú pháp sẽ không được thực thi.	+lý thuyết : được sử dụng để xem tên là <ten_macro> đã được định nghĩa hay chưa . Nếu đã được định nghĩa rồi thì toàn bộ các câu lệnh trong cú pháp sẽ  được thực thi.
+	Kết luận: #ifdef và #ifndef là tương tự nhau. Điểm khác nhau duy nhất giữa chúng là #ifdef được sử dụng để kiểm tra xem một định nghĩa đã được định nghĩa trước đó hay chưa, trong khi #ifndef được sử dụng để kiểm tra xem một định nghĩa chưa được định nghĩa.
+	Về bản chất thì ifndef và ifdef ngược nhau
+ 
+	Tại sao người ta lại sử dụng ifndef và ifdef
+-	Vì trong khi lập trình ta sẽ viết rất nhiều file khác nhau lên dễ xảy ra tình trạng bị xung đột giữa các file vì vậy mới thực hiện việc kiểm tra xem rằng macro đã được định ngĩa hay chưa nếu đã định nghĩa rồi thì các câu lệnh trong đó sẽ được bỏ qua còn nếu chưa thì sẽ được định nghĩa lại.
 
