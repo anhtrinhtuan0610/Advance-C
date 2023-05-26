@@ -23,3 +23,7 @@ BUOI 1 - COMPILER
 -	Cú pháp để tạo ra file .s trong vscode là:
 gcc main.i -S -o main.s
 -	Sau quá trình tạo ra file main.s sẽ đến quá trình tạo ra file .o hay còn gọi là object file – tập tin đối tượng gồm file .o  và file thư viện thông qua quá trình assembler – quá trình lắp ráp.
+-	-	Cú pháp tạo file .c trong vscode:
+gcc -c main.s -o main.o
+-	Sau khi tạo ra file .o thì sẽ tạo ra file.exe thông qua quá trình linker 
+
