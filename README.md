@@ -26,6 +26,7 @@ gcc main.i -S -o main.s
 -	-	Cú pháp tạo file .c trong vscode:
 gcc -c main.s -o main.o
 -	Sau khi tạo ra file .o thì sẽ tạo ra file.exe thông qua quá trình linker 
+-	
 =====================buổi 2 macro========================
 
 1.lý thuyết:
