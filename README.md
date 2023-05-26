@@ -42,6 +42,7 @@ Ifndef
 #endif
 +lý thuyết : được sử dụng để xem tên là <ten_macro> đã được định nghĩa hay chưa . Nếu đã được định nghĩa rồi thì toàn bộ các câu lệnh trong cú pháp sẽ không được thực thi.
 
+
 Ifdef
 +cú pháp:
 #ifdef <tên_macro>
@@ -49,6 +50,8 @@ Ifdef
 #define<tên_macro> <giá_trị_macro>
 #endif
 +lý thuyết : được sử dụng để xem tên là <ten_macro> đã được định nghĩa hay chưa . Nếu đã được định nghĩa rồi thì toàn bộ các câu lệnh trong cú pháp sẽ  được thực thi.
+
+
 	Kết luận: #ifdef và #ifndef là tương tự nhau. Điểm khác nhau duy nhất giữa chúng là #ifdef được sử dụng để kiểm tra xem một định nghĩa đã được định nghĩa trước đó hay chưa, trong khi #ifndef được sử dụng để kiểm tra xem một định nghĩa chưa được định nghĩa.
 	Về bản chất thì ifndef và ifdef ngược nhau
 	Tại sao người ta lại sử dụng ifndef và ifdef
