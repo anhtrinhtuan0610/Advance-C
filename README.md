@@ -202,5 +202,12 @@ int main()
    
     return 0;
 }
-- macro không phải là code nó chỉ là đoạn được thay thế bằng 1 đoạn khác.	      
+- macro không phải là code nó chỉ là đoạn được thay thế bằng 1 đoạn khác.	
+   * lưu ý : 
+   
++ "##" dùng để nối chuỗi 
+   
++"#" dùng để khai báo chuỗi
+   
+
 
