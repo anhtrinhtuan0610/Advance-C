@@ -55,6 +55,89 @@ Ifdef
 
 	Kết luận: #ifdef và #ifndef là tương tự nhau. Điểm khác nhau duy nhất giữa chúng là #ifdef được sử dụng để kiểm tra xem một định nghĩa đã được định nghĩa trước đó hay chưa, trong khi #ifndef được sử dụng để kiểm tra xem một định nghĩa chưa được định nghĩa.
 	Về bản chất thì ifndef và ifdef ngược nhau
+
 	Tại sao người ta lại sử dụng ifndef và ifdef
 -	Vì trong khi lập trình ta sẽ viết rất nhiều file khác nhau lên dễ xảy ra tình trạng bị xung đột giữa các file vì vậy mới thực hiện việc kiểm tra xem rằng macro đã được định ngĩa hay chưa nếu đã định nghĩa rồi thì các câu lệnh trong đó sẽ được bỏ qua còn nếu chưa thì sẽ được định nghĩa lại.
+1.3 macro viết theo kiểu giống fucion
+cú pháp :
+#define <ten_macro>   <value>
+#if <statements>
+#elif
+#endif
+1.4 macro khai báo nhiều biến với ký tự "##"
+- "##" thường dùng để đặt tên cho biến, hàm, class
+- "##" dùng để nối chuỗi trong macro
+ex : ví dụ ta có thể khai báo nhiều biến dựa vào macro như sau:
+#include <stdio.h>
+
+#define VARIABLE(name)\                          
+int int_##name;   \
+char char_##name;  \
+double double_##name
+
+int main()
+{
+    VARIABLE(bien);
+    int_bien = 10;
+    char_bien = 'A';
+    double_bien =10.6;
+    printf("int : %d\n",int_bien);
+    printf("char : %c\n",char_bien);
+    printf("double : %f",double_bien);
+}
+
+-  chú thích :
+" #define VARIABLE(name)\                          
+int int_##name;   \
+char char_##name;  \
+double double_##name"
+ở đây ta đã tạo 1 macro để khai báo ra 3 biến kiểu int, char, double.
+sau khi chạy chương trình ta sẽ được 3 biến là:
+int : 10
+char : A
+double: 10.6000000
+1.5 khai báo hàm bằng macro
+-  ta cũng có thể khai báo hàm bằng macro
+ví dụ:
+#include <stdio.h>
+
+#define hien_thi(ten_ham, ten_hoc_sinh, tuoi, lop) \
+void ten_ham(){                                    \
+    printf("ten : %s\n",ten_hoc_sinh);               \
+    printf("tuoi : %d\n", tuoi);                     \
+    printf("lop : %d\n", lop);                       \
+}
+hien_thi(nguyen_A,"Nguyen va A", 16, 9)
+hien_thi(nguyen_B,"Nguyen va B", 17, 10)
+int main()
+{
+    nguyen_A();
+    nguyen_B();
+    return 0;
+}
+
+=> có thể thay thế khai báo chuỗi bằng "#"
+nếu sử dụng khai báo chuỗi bằng "#" thì ví dụ trên sẽ như sau:
+printf("ten : %s\n",ten_hoc_sinh); 
+//sẽ được thay thế bằng:
+printf("ten : %s\n",#ten_hoc_sinh); 
+> khi đó khi nhập vào chuỗi   
+hien_thi(nguyen_B,"Nguyen va B", 17, 10)        
+// ta sẽ không cần khai báo thêm dấu "" nữa và sẽ có dạng như sau:
+  hien_thi(nguyen_B,Nguyen va B , 17, 10)    
+1.6 variadic macros ( macros biến đổi)
+-  dùng để viết macro mà không có tham số cụ thể hoặc không biết số tham số nhất định.
+#include <stdio.h>
+
+#define TEST(...) __VA_ARGS__
+// đây là 1 macro được sử dụng khi ta chưa biết tham số đầu vào
+
+
+
+int main()
+{
+    TEST(10, 20, 30);
+    return 0;
+}
+- macro không phải là code nó chỉ là đoạn được thay thế bằng 1 đoạn khác.	      
 
