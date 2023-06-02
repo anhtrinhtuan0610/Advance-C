@@ -229,5 +229,48 @@ int main()
    
 +"#" dùng để khai báo chuỗi
    
+   =======================Buổi 3_INPUT========================
+   
++Bài toán 1: tính tổng 3 số a,b,c 
+   
+#include <stdio.h>
+
+int tinh_tong(int a, int b, int c)
+   
+{
+   
+    return a + b + c;
+   
+}
+   
+int main()
+   
+{
+   
+    printf("tong cua 3 so a b va c la : %d",tinh_tong(10,20,18));
+   
+    return 0;
+   
+}
+
+=> từ bài toán trên ta lên 1 bài toán như sau:
+   
+viết 1 chương trình tính tổng các số với số lượng các số chưa xác định được.
+   
+=>hay là viết 1 chương trình tính tổng mà chưa biết số lượng input đầu vào.
+   
+#include<stdarg.h>  : thư viện stdarg.h cung cấp tính năng cho phép hàm có số lượng đối số không xác định hoặc biến đối được truyền vào 
+   
+- thư viện stdarg.h được khai báo để sử dụng những hàm như va_list, va_start,...
+   
+- "va_list" : là 1 kiểu dữ liệu trong thư viện <stdarg.h> được sử dụng để duyệt các đối số không định dạng của các hàm mà số lượng tham số chưa xác định trước .
+   
+- "va_list" : cho phép các hàm nhận tham số có số lượng biến đổi , giúp tạo ra các hàm đa dụng và linh hoạt hơn.
+   
+-"va_start" : là 1 macro trong thư viện <stdarg.h>  được sử dụng để thiết lập danh sách biến đổi số trong hàm có số lượng đối số không xác định. Macro "va_start"
+   
+   được sử dụng kết hợp với "va_list" để khởi tạo con trỏ đến danh sách các đối số không xác định và trỏ tới phần đầu tiên trong danh sách đó.
+
+   
 
 
