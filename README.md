@@ -76,6 +76,7 @@ cú pháp :
 #elif
    
 #endif
+   
 1.4 macro khai báo nhiều biến với ký tự "##"
    
 - "##" thường dùng để đặt tên cho biến, hàm, class
@@ -84,9 +85,10 @@ cú pháp :
    
 ex : ví dụ ta có thể khai báo nhiều biến dựa vào macro như sau:
    
+   
 #include <stdio.h>
 
-#define VARIABLE(name)\  
+#define VARIABLE(name) \  
    
 int int_##name;   \
    
@@ -95,6 +97,7 @@ char char_##name;  \
 double double_##name
 
 int main()
+   
 {
     VARIABLE(bien);
    
@@ -151,11 +154,13 @@ void ten_ham(){                                    \
    
     printf("lop : %d\n", lop);                       \
 }
+   
 hien_thi(nguyen_A,"Nguyen va A", 16, 9)
    
 hien_thi(nguyen_B,"Nguyen va B", 17, 10)
    
 int main()
+   
 {
     nguyen_A();
    
@@ -166,25 +171,36 @@ int main()
 
 => có thể thay thế khai báo chuỗi bằng "#"
    
+   
 nếu sử dụng khai báo chuỗi bằng "#" thì ví dụ trên sẽ như sau:
+   
    
 printf("ten : %s\n",ten_hoc_sinh); 
    
+   
 //sẽ được thay thế bằng:
+   
    
 printf("ten : %s\n",#ten_hoc_sinh); 
    
+   
 > khi đó khi nhập vào chuỗi 
    
-hien_thi(nguyen_B,"Nguyen va B", 17, 10)     
+   
+hien_thi(nguyen_B,"Nguyen va B", 17, 10) 
+   
    
 // ta sẽ không cần khai báo thêm dấu "" nữa và sẽ có dạng như sau:
    
+   
   hien_thi(nguyen_B,Nguyen va B , 17, 10)   
+   
    
 1.6 variadic macros ( macros biến đổi)
    
+   
 -  dùng để viết macro mà không có tham số cụ thể hoặc không biết số tham số nhất định.
+   
    
 #include <stdio.h>
  
@@ -197,15 +213,19 @@ hien_thi(nguyen_B,"Nguyen va B", 17, 10)
 
 
 int main()
+   
 {
     TEST(10, 20, 30);
    
     return 0;
 }
+   
 - macro không phải là code nó chỉ là đoạn được thay thế bằng 1 đoạn khác.	
+   
    * lưu ý : 
    
 + "##" dùng để nối chuỗi 
+   
    
 +"#" dùng để khai báo chuỗi
    
