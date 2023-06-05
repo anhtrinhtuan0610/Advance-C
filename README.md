@@ -292,6 +292,53 @@ type  va_arg(va_list ap, type);
 trong đó : "ap" là biến có kiểu dữ liệu "va_list" sẽ trỏ tới danh sách các đối số không xác định và "type" là kiểu dữ liệu của đối số cần truy cập và trả về giá trị.
 
 Sau khi gọi "va_arg", con trỏ trong danh sách các đối số sẽ được điều chỉnh để trỏ tới đối số kế tiếp.
+   
+- "va_end"  dùng để xóa bộ nhớ của "va_list" vì khi ta khai báo "va_list" thì biến đó sẽ được cấp phát 1 vùng nhớ lên sau khi sử dụng cần xóa bộ nhớ đó đi.
+   
+=> khi mà bắt gặp các bài toán có số tham số không xác định hoặc có số tham số gần giống nhau thì sử dụng thư viên"stdarg.h"
+   
+EX: chương trình tính tổng sử dụng thư viện "stdarg.h" khi không biết tham số truyền vào.
+   
+#include <stdio.h>
+   
+#include <stdarg.h>
+
+int  tong(int so_input, ...)
+{
+   
+    int sum = 0;
+    
+   va_list va;                                     // thực chất là 1 con trỏ trỏ đến vị trí của đối số không xác định
+    
+   va_start (va,so_input);                         // khởi tạo con trỏ
+
+   
+   for(int i = 0; i < so_input; i++)
+    {
+                               
+      //  printf("test : %f\n", va_arg(va, double)); //chi chop in ra doi so co kieu double
+                               
+        sum += va_arg(va,int);
+        
+    }
+                               
+    va_end(va);                                       // xoa vung nho cua va_list
+                               
+    return sum;
+                               
+}
+
+int main()
+                               
+{
+                               
+   // tong(5,1, (double)2, 3, 4, 5);
+                               
+    printf("tong bang : %d",tong(6, 3, 6 ,9, 1, 2, 3));
+                               
+    return 0;
+                               
+}
 
 
    
