@@ -339,6 +339,71 @@ int main()
     return 0;
                                
 }
+                               
+                              =========================Buổi 4: biến(VARIABLE)====================
+                               
+1. lý thuyết.
+                               
+- thư viện : "stdint.h" thư viện này giúp lưu trữ và làm việc với dữ liệu 1 cách rõ ràng ở cấp độ bit.
+ 
+
+1.1 Biến static 
+                               
+                               
+a, biến static trong khai báo biến cục bộ.
+                               
+- khi 1 biến cục bộ được khai báo với từ khóa static. Biến sẽ chỉ được khởi tạo 1 lần duy nhất và tồn tại trong suốt thời gian chạy chương trình. Gía trị của nó không bị mất đi ngay cả khi kết thúc hàm. Tuy nhiên khác với biến toàn cục có thể gọi trong tất cả mọi nơi trong chương trình, thì biến cục bộ static chỉ có thể được gọi trong nội bộ hàm khởi taọ nó. Mỗi lần hàm được gọi, giá trị của biến chính bằng giá trị tại lần gần nhất hàm được gọi.
+                               
+Ví dụ.
+                               
+#include <stdio.h>
+
+#include <stdint.h> 
+   
+  // thư viện giúp lưu trữ và làm việc với dữ liệu 1 cách hiệu quả ở cấp độ bit
+
+void count()
+
+{
+    uint8_t temp = 0; 
+   
+    printf("temp = %d\n",temp);
+   
+    temp++;
+   
+}
+
+void count_2()
+   
+{
+    static uint8_t temp = 0;     // khi gọi biến static sẽ khởi tạo 1 biến temp 1 lần và địa chỉ của temp sẽ cố định và tồn tại trong suốt chương trình
+   
+   printf("temp = %d\n",temp);
+   
+    temp++;
+   
+}
+   
+int main()
+   
+{
+    count();           // khởi tạo 1 biến temp có địa chỉ là 0x01 sau khi hàm count() kết thúc thì thu hồi bộ nhớ của biến cục bộ temp
+   
+    count();           // khởi tạo lại biến temp có địa chỉ là 0x01 sau khi hàm count() kết thúc thì thu hồi bộ nhớ của biến cục bộ temp
+   
+    count();           // khởi tạo lại biến temp có địa chỉ là 0x01 sau khi hàm count() kết thúc thì thu hồi bộ nhớ của biến cục bộ temp
+   
+
+    count_2();
+   
+    count_2();
+   
+    count_2();
+   
+    return 0;
+   
+}
+
 
 
    
