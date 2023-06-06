@@ -407,6 +407,135 @@ int main()
     return 0;
    
 }
+   
+   1.2 Biến extern .
+   
+- Trong C, khi 1 biến đi sau từ khóa "extern" có nghĩa là:
+   
++ Nó là tham chiếu của 1 biến, hàm cùng tên nào đó, đã được định nghĩa bên ngoài. Nó chỉ khai báo chứ không định nghĩa(cấp pháp bộ nhớ cho biến).
+   
++ Biến được tham chiếu phải được khai báo ở cấp độ cao nhất(toàn cục), và có thể nằm trong 1 file khác.
+   
+=> khi muốn sử dụng 1 biến hoặc 1 hàm ở file khác cùng chung1 folder thì ta sẽ sử dụng biến "extern" nhưng chỉ đối với biến toàn cục.
+   
+Ví dụ: ta có 1 chương trình gồm 2 file có chương trình như sau:
+   
++flie 1:
+   
+#include<stdio.h>
+   
+#include<stdint.h>
+   
+
+uint8_t temp = 15;
+   
+
+void count()
+   
+{
+   
+    printf("temp = %d\n",temp);
+   
+    temp++;
+   
+} 
+   
+   
++file 2:
+   
+#include<stdio.h>
+   
+#include<stdint.h>
+   
+#include"b4_extern_test.c"
+   
+
+extern void count();
+   
+extern uint8_t temp;
+
+int main()
+   
+{
+   
+    count();
+   
+    count();
+   
+    temp = 20;
+   
+    printf("temp = %d\n",temp);
+   
+    count();
+   
+    return 0;
+   
+}
+   
+*Giải thích:
+   
+- ở file 1 ta thấy chương trình khởi tạo 1 biến toàn cục temp và hàm count,
+   
+- ở file 2 ta thấy chương trình sử dụng biến "extern" trước hàm "count" để xác định rằng sẽ sử dụng hàm "count" ở file 1 tương tự với biến toàn cục "temp"
+
+1.3 biến static với biến toàn cục .
+   
+- khi biến toàn cục được khai báo với "static" thì biến toàn cục chỉ được sử dụng trong file khai báo đó và không có thể sử dụng trong các file khác kể cả khi được khai báo"extern" 
+   
+Ví dụ:
+   
++file 1:
+   
+#include<stdio.h>
+   
+#include<stdint.h>
+   
+#include "b4_static_toan_cuc_test.c"
+   
+
+extern  uint8_t temp = 0; // khi ta gọi biến extern cũng không thể sử dụng được 
+   
+extern void dem();       // khi ta gọi biến extern cũng không thể sử dụng được 
+   
+
+int main()
+   
+{
+   
+    //printf("temp = %d",temp);
+   
+    test();
+   
+}
++file 2:
+   
+#include<stdio.h>
+   
+#include<stdint.h>
+   
+
+
+static uint8_t temp = 0; // khi mà biến toàn cục khai báo theo kiểu static thì chỉ có thể sử dụng trong file được khai báo 
+
+static void dem()
+   
+{
+   
+    printf("dem = %d",temp);
+   
+}
+   
+
+void test()
+   
+{
+   
+    dem();
+   
+}
+   
+=> như vậy khi ta gọi extern trong file 1 nhưng biến toàn cục "temp" và hàm"dem" đều báo lỗi.
+
 
 
 
