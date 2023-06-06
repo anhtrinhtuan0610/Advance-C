@@ -365,6 +365,7 @@ Ví dụ.
 void count()
 
 {
+   
     uint8_t temp = 0; 
    
     printf("temp = %d\n",temp);
@@ -376,6 +377,7 @@ void count()
 void count_2()
    
 {
+   
     static uint8_t temp = 0;     // khi gọi biến static sẽ khởi tạo 1 biến temp 1 lần và địa chỉ của temp sẽ cố định và tồn tại trong suốt chương trình
    
    printf("temp = %d\n",temp);
@@ -384,7 +386,9 @@ void count_2()
    
 }
    
+   
 int main()
+   
    
 {
     count();           // khởi tạo 1 biến temp có địa chỉ là 0x01 sau khi hàm count() kết thúc thì thu hồi bộ nhớ của biến cục bộ temp
