@@ -612,7 +612,65 @@ int main()
                               
 }
 
+                                        ===========================Buổi 5================================
+                              
+1. biến volatile .
+                              
+ta có ví dụ sau:
+                              
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+#include <time.h>
+   
 
+
+volatile uint8_t a;
+   
+
+volatile int test = 10;
+   
+
+void d();
+   
+void b();
+   
+void c();
+   
+
+int comment();
+   
+
+int main()
+   
+{
+   
+    while(1)
+   
+    {
+   
+        test = comment();
+   
+        d();
+   
+        b();
+   
+        c();
+   
+    }
+   
+}
+   
+- trong chương trình trên ta có thấy xuất hiện từ khóa "volatile"
+   
++ ý nghĩa: 
+   
+- từ khóa "volatile" ở đây được dùng để cảnh báo trình biên dịch rằng giá trị của biến có thể thay đổi bất kỳ lúc nào, không chỉ do chương trình chính và còn do
+   yếu tố bên ngoài .
+   
+- việc sử dụng từ khóa "volatile" đảm bảo rằng trình biên dịch sẽ không tối ưu hóa mã máy bằng cách sử dụng các giá trị với giả định rằng chúng không thay đổi 
+trong quá trình thực thi chương trình. Thay vào đó, trình biên dịch sẽ luôn đọc lại giá trị của biến từ vị trí bộ nhớ của nó (memory location) mỗi khi biến được sử dụng trong chương trình.
 
 
 
