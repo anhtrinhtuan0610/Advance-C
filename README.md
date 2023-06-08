@@ -484,7 +484,9 @@ int main()
    
 Ví dụ:
    
+   
 +file 1:
+   
    
 #include<stdio.h>
    
@@ -563,6 +565,7 @@ khi ta khai báo 1 biến trong chương trình thì biến đó sẽ được l
 register <type_of_data>   <variable>
 + EX: ví dụ về sử dụng register 
    
+   
 #include <stdio.h>
    
    
@@ -576,6 +579,7 @@ register <type_of_data>   <variable>
 int main()
    
 {
+   
    
     clock_t start, end;
    
