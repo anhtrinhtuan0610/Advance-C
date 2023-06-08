@@ -560,6 +560,9 @@ khi ta khai báo 1 biến trong chương trình thì biến đó sẽ được l
    
 - trong  quá trình viết chương trình nhưng biến cần có hiệu suất cao thì mới lưu ở bộ nhớ register vì bộ nhớ của register nhỏ và có hạn.
    
+- ta không thể khai báo biến toàn cục với register.
+
+   
 +Cú pháp:
    
 register <type_of_data>   <variable>
