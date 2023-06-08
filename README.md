@@ -535,6 +535,76 @@ void test()
 }
    
 => như vậy khi ta gọi extern trong file 1 nhưng biến toàn cục "temp" và hàm"dem" đều báo lỗi.
+   
+1.4 biến register (thanh ghi)
+   
+- tác dụng của register là làm tăng hiệu suất của chương trình.
+   
+
+quá trình tính toán của 1 chương trình.
+   
+ 
+
+khi ta khai báo 1 biến trong chương trình thì biến đó sẽ được lưu trên bộ nhớ RAM (bộ nhớ RAM chỉ lưu kết quả không có khả năng tính toán) 
+   
+- Sau đó bộ nhớ này sẽ đưa biến đưa khai báo lên bộ nhớ register và từu bộ nhớ register lên bộ nhớ ALU để tính toán.
+   
+- và từ bộ nhớ ALU biến sau khi được tính toán sẽ được trả lại lần lượt bộ nhớ register và trở về lưu trên bộ nhớ RAM
+   
+
+- khi khai báo biến với register tốc độ sử lý sẽ nhanh hơn rất nhiều vì biến đó sẽ được lưu trên bộ nhớ register.
+   
+*lưu ý:
+   
+- trong  quá trình viết chương trình nhưng biến cần có hiệu suất cao thì mới lưu ở bộ nhớ register vì bộ nhớ của register nhỏ và có hạn.
+   
++Cú pháp:
+   
+register <type_of_data>   <variable>
++ EX: ví dụ về sử dụng register 
+   
+#include <stdio.h>
+   
+   
+#include <stdint.h>
+   
+   
+#include <time.h>
+   
+
+
+int main()
+   
+{
+   
+    clock_t start, end;
+   
+
+    register uint32_t i;  //khi khai báo register trước variable thì thông báo rằng biến này sẽ được lưu trên bộ nhớ register
+   
+
+    /*những biến mà cần tốc độ sư lý nhanh và hiệu suất cao thì mới sử dụng register để khai báo
+   
+   
+    vì bộ nhớ register rất nhỏ và có giới hạn*/
+   
+
+    start = clock();
+
+   
+    for(i = 0; i < 0xFFFFFFFF; i++)
+
+                              
+    end = clock();
+                              
+
+    printf("time : %f\n", (double)(end - start) /CLOCKS_PER_SEC);
+                              
+
+    return 0;
+                              
+}
+
 
 
 
