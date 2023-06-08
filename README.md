@@ -672,6 +672,349 @@ int main()
 - việc sử dụng từ khóa "volatile" đảm bảo rằng trình biên dịch sẽ không tối ưu hóa mã máy bằng cách sử dụng các giá trị với giả định rằng chúng không thay đổi 
 trong quá trình thực thi chương trình. Thay vào đó, trình biên dịch sẽ luôn đọc lại giá trị của biến từ vị trí bộ nhớ của nó (memory location) mỗi khi biến được sử dụng trong chương trình.
 
+   2. Phân vùng nhớ:
+   
+- bộ nhớ gồm 2 phần 
+   
++ FLASH : dùng để lưu bộ nhớ chương trình khi tắt nguồn đi thì nó vẫn còn lưu.
+   
++ RAM : tốc độ truy suất nhanh nhưng khi mất điện thì nó sẽ clear hết những chương trình cũ trên RAM.	
+   
+>> ta sẽ nghiên cứu về phân vùng nhớ RAM.
+   
+- Trong bộ nhớ RAM sẽ có 5 phân vùng nhớ:
+   
+ 
+
+* text : 
+   
+- quyền truy cập chỉ có read và nó chứa lệnh để thực thi nên tránh sửa đổi instruction (chỉ dẫn) 
+   
++ "lệnh thực thi " : chính là chương trình của chúng ta mà được build đến cuối cùng 
+   
+- chương trình của chúng ta sau khi được build sẽ được lưu ở text nhưng chỉ có thể đọc không thể sửa đổi được.
+   
+- chứa khai báo hằng số trong chương trình.
+   
++ "hằng số": const 
+   
+ví du: 
+   
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+
+const uint8_t temp = 15;  // đây là 1 hằng số được lưu trữ trên phân vừng nhớ test.
+   
+
+
+int main(int argc, char const *argv[])
+   
+{
+   
+   temp = 10;   // chỉ có thể xem giá trị của temp nhưng không thể sửa đổi giá trị của nó
+   
+    printf("temp = %d",temp);
+   
+    return 0;
+   
+}
+
+   
+=> nghĩa là tất cả các biến hằng số được lưu ở phần vùng test ta chỉ có thể đọc nó chứ không thể sửa đổi nó.
+	
+*Data:
+   
+- quyền truy cập đọc và sửa được.
+   
+- chứa biến toàn cục hoặc biến static với giá trị khởi tạo khác không
+   
+- được giải phóng khi kết thúc chương trình.
+   
++Ví dụ:
+   
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+
+const uint8_t temp = 15;  // đây là 1 hằng số được lưu trữ trên phân vừng nhớ test.
+   
+
+uint8_t cal = 5; // đây là biến toàn cục
+   
+
+static uint8_t sal = 5; // đây là biến static với biến toàn cục tức là chỉ được sử dụng biến đó trong file này
+   
+
+void find()
+ 
+{
+   
+    static uint8_t count = 5; //đây là biến static với biến cục bộ tức là biến này được cấp phát bộ nhớ trong suốt chương trình
+   
+}
+
+   
+int main(int argc, char const *argv[])
+   
+{
+   
+    temp = 10;   // chỉ có thể xem giá trị của temp nhưng không thể sửa đổi giá trị của nó
+   
+    printf("temp = %d",temp);
+   
+    return 0;
+   
+}
+   
+*Bss:
+   
+- quyến truy cập read hoặc write.
+   
+- khác với phân vùng nhớ Data thì phân vùng nhớ Bss chứa biến toàn cục hoặc biến static với giá trị khởi tạo băng không hoặc không khởi tạo.
+   
+- Được giải phóng khi kết thúc chương trình.
+   
+-Ví dụ:
+   
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+
+static uint8_t a; // đây là biến static với biến toàn cục không được khởi tạo giá trị
+   
+uint8_t b = 0; // đây là biến toàn cục được khởi tạo bằng không 
+   
+
+int main(int argc, char const *argv[])
+   
+{
+   
+    a = 10;   // giống với phân vùng nhớ Data thì phân vùng nhớ Bss có thể đọc hoặc viết dữ liệu
+   
+    printf("temp = %d",a);
+   
+    return 0;
+   
+}
+
+
+/*tức khi khai báo biến toàn cục hoặc biến static mà không khởi tạo 
+   
+giá trị hoặc khởi tạo giá trị bằng không thì biến đó sẽ được phân vùng nhớ ở phân vùng nhớ Bss*/
+   
+
+*Stack:
+   
+- quyền truy cập là read và write 
+   
+-  được sử dụng cấp phát cho biến local (biến cục bộ), input parameter của hàm,...
+   
+- sẽ được giải phóng khi gọi hàm free,...
+   
+- Ví dụ :
+   
+
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+
+
+uint8_t tong(uint8_t a, uint8_t b)  // a và b ở đây được gọi la input parameter của hàm
+   
+{
+   
+    uint8_t c = 0;                  // c ở đây được gọi là biến cục bộ local
+   
+
+    c = a + b;
+   
+
+    printf("dia chi cua a la : %p\n",&a);      //"%p" để ghi địa chỉ
+   
+    printf("dia chi cua b la : %p\n",&b);
+   
+    printf("dia chi cua c la : %p\n",&c);
+   
+
+    return c;
+}
+   
+
+
+int main()
+   
+{
+   
+    printf(" the sum of a and b is : %d\n",tong(5,6));
+   
+    /*uint8_t a = 5  địa chỉ : 0x01
+   
+      uint8_t b = 6  địa chỉ : 0x02
+   
+      uint8_t c = 5 + 6  địa chỉ : 0x03
+   
+    */
+   
+   return 0; 
+   
+}
+   
+
+/*tức là : tất cả những biến cục bộ và input parameter của hàm sẽ được phân vùng nhớ
+trên vùng nhớ Stack*/
+
+   - Ví dụ:
+   
+#include <stdio.h>
+
+void swap(int a, int b)
+   
+{
+   
+    int swap = a;
+   
+    a = b ;
+   
+    b = swap;
+   
+    printf("a = %d\n",a);
+   
+    printf("b = %d\n",b);
+   
+}
+
+int main()
+   
+{
+   
+    int sodau = 10;
+   
+    int socuoi = 15;
+   
+    swap(sodau,socuoi); //khi thoát khỏi hàm thì bộ nhớ sẽ được thu hồi
+   
+   
+   printf("so dau la :%d, so cuoi la :%d",sodau,socuoi);
+}
+   
+
+*Heap:
+   
+- quyền truy cập là read và write.
+   
+- được sử dụng để cấp phát bộ nhớ động, malloc, calloc,..
+   
+- sẽ được giải phóng khi gọi hàm free,..
+   
+- Ví dụ:
+   
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+#include <stdlib.h>  // thư viện dùng để khai báo các hàm cấp phát động
+   
+
+uint8_t array[] = {1,2,3,4}; // được gọi là "mạc tĩnh" tức là kích thước cố định không thay đổi
+   
+
+uint8_t *ptr;                //uint8_t : 1byte
+   
+
+int main(int argc, char const *argv[])
+{
+   
+    uint16_t *ptr = (int16_t*)malloc(sizeof(int16_t)*5);   //malloc này là 5 byte
+   
+
+    for(int i = 0; i < 5; i++)
+                         
+    {
+                         
+            ptr[i] = 2*i;
+                         
+    }
+                         
+
+    for(int i = 0; i < 5; i++)
+   
+    {
+   
+        printf("i = %d\n",ptr[i]);
+   
+    }
+
+    return 0;
+   
+}
+- Ví dụ;
+   
+#include <stdio.h>
+   
+#include <stdint.h>
+   
+#include <stdlib.h>  // thư viện dùng để khai báo các hàm cấp phát động
+   
+
+
+void test1()
+   
+{
+   
+    uint8_t array[5];
+   
+   
+    printf("dia chi cua mang la : %p\n",array);
+   
+}
+
+void test2()
+   
+{
+  
+    uint8_t *array =  (uint8_t*)malloc(sizeof(int16_t)*5);   //malloc này là 5 byte
+   
+
+    printf("dia chi cua mang la : %p\n",array);
+   
+
+    free(array);
+
+}
+
+int main(int argc, char const *argv[])
+   
+{
+    
+    test1();  //dia chi 2 thg nay giống nhau 
+   
+    test1();
+   
+
+    /*tại sao 2 thg này giống nhau
+    vì nó là cấp phát tĩnh địa chỉ của nó sẽ không thay đổi 
+    và nó được phân vùng nhớ stack
+    stack thoát ra khỏi hàm sẽ thu hồi vùng nhớ */
+   
+
+    test2();  // địa chỉ 2 thg này khác nhau
+   
+    test2();
+   
+
+    /*tại sao 2 thg này lại có địa chỉ khác nhau 
+    vì nó được lưu trên phân vùng nhớ Heap
+    phân vùng Heap không có cơ chế tự phân vùng nhớ mà phải dùng hàm free để thu hồi vùng nhớ*/
+    return 0;
+}
+   
+   
+
 
 
    
