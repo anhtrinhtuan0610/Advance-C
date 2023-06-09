@@ -11,6 +11,7 @@ BUOI 1 - COMPILER
 -	Compiler là 1 công cụ giúp chuyển từ ngôn ngữ bậc cao xuống ngôn ngữ máy giúp cho máy tính hiểu và làm việc.
 
 2. quá trình trình biên dịch.
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/9d0ee301-d582-4664-901e-1bf0bbba9f87)
 
 +chú thích:
 -	File .c: hay file source (file nguồn) là file main.c hoặc các file .c khác khi ta lập trình.
