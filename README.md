@@ -1012,6 +1012,250 @@ int main(int argc, char const *argv[])
     phân vùng Heap không có cơ chế tự phân vùng nhớ mà phải dùng hàm free để thu hồi vùng nhớ*/
     return 0;
 }
+	
+	                                          ======================Buổi 6========================
+                                                       ==============Struct Union================
+
+*"struct" : cấu trúc
+	
+*"union" : hợp nhất
+	
+
+1. struct
+	
+	
+- là kiểu dữ liệu do người dùng tự định nghĩa, cũng giống với các kiểu dữ liệu khác như int, double,....
+	
+- "struct" là 1 kiểu dữ liệu được sử dụng để lưu trữ nhiều giá trị của các kiểu dữ liệu khác nhau dưới cùng 1 tên. Đây là 1 kiểu dữ liệu phức tạp được tạo ta từ nhiều kiểu dữ liệu cơ bản.
+	
+=> tức là ta có thể sử dụng "struct" để lưu nhiều biến có cùng kiểu dữ liệu hoặc nhiều biến với nhiều kiểu dữ liệu khác nhau.
+	
+- Ví dụ:
+	
+#include <stdio.h>
+	
+#include <stdint.h>
+
+
+typedef struct      
+	
+{
+    int ngay;
+	
+    int thang;
+	
+    int nam;
+	
+}typeDate;                                  //tạo 1 kiểu dũ liệu gọi là typeDate gồm có ngày tháng,năm
+
+
+
+void sceen(typeDate date)
+	
+{
+   
+	printf("Ngay : %d, Thang : %d, Nam: %d\n",date.ngay,date.thang,date.nam);
+	
+}
+
+int main(int argc, char const *argv[])
+	
+{
+    
+	/*đây là cách khai báo 1 biến theo kiểu struct và khởi tạo các biến thành phần*/
+	
+
+    //typeDate date;                            // tạo 1 biến có kiểu typeDate tên date
+	
+    //date.ngay = 6;                            //khởi tạo giá trị cho ngày tháng năm
+	
+   // date.thang = 9; 
+	
+   // date.nam = 2023;
+
+	
+    /*ta có thể khai báo theo cách khác như sau*/
+	
+
+    // typeDate date = {date.ngay = 6, date.thang = 10, date.nam =2023};
+	
+
+     /*ta có thể khai báo theo cách thứ 3 như sau*/
+	
+
+     typeDate date = {6,10,2023};
+	
+
+    sceen(date);                              //gọi hàm hiển thị ra màn hình
+	
+    return 0;
+	
+}
+
++ Cú pháp khai báo struct.
+	
+- cách 1:
+	
+typedef struct
+	
+{
+	
+<type of data>   <name>
+	
+<type of data>   <name>
+	
+<type of data>   <name>
+	
+}name_variable,
+	
+
+- cách 2 :
+	
+struct <Tên struct>
+	
+{
+	
+<Kiểu dữ liệu thành viên số 1> <Tên thành viên số 1>;
+	
+<Kiểu dữ liệu thành viên số 2> <Tên thành viên số 2>;
+	
+…
+	
+};
+
+- Cú pháp khởi tạo giá trị biến:
+	
++ cách 1: 
+	
+<tên struct>.<tên biến> = <giá trị cần gán>
+	
+
++cách 2 :
+	
+<tên struct>.<tên biến> =  {<tên biến>.<tên biến struct 1> = <giá trị>, <tên biến>.<tên biến struct 2> = <giá trị>,<tên biến>.<tên biến struct 3> = <giá trị>}
+	
++cách 3:
+	
+<tên struct>.<tên biến> = {<giá trị 1>, <giá trị 2>,...} 
+	
+- giá trị sẽ được gán lần lượt theo thứ tự khai báo theo trong struct.
+	
+
+*cách tính byte trong struct.
+	
+	
+tên kiểu dữ liệu                                                                    byte
+	
+uint8_ t                                                                             1
+	
+uint16_t                             			                             2
+	
+uint32_t				                                             4
+
+- xét ví dụ :
+	
+typedef  struct
+	
+{
+	
+uint8_t   a;
+	
+uint16_t b;
+	
+uint32_t c;
+	
+}find
+	
+
+- cách tính như sau 
+	
++ xét biến có kiểu dữ liệu lớn nhất 
+	
+- trong trường hợp này là c với 4 byte vật ta sẽ quét với 4 byte
+	
++ vì biến đầu tiên có 1 byte lên sau khi quét sẽ thùa ra 3 byte bộ nhớ đệm
+	
++ sau đó vòng quét sẽ so sánh kiểu dữ liệu thứ 2 với 3 byte bộ nhớ đệm ở trên
+	
+- nếu kiểu dữ liệu của biến thứ 2 lớn hơn bộ nhớ đệm ta sẽ thực hiện quét lần 2 với bộ nhớ đệm lớn nhất như ta xét ban đầu là 4byte.
+	
+- nếu kiểu dữ liệu của biến thứ 2 nhỏ hơn bộ nhớ đệm thì sẽ sử dụng bộ nhớ đệm 
+	
++trong trường hợp này vì kiểu dữ liệu của biến thứ 2 nhở hơn bộ nhớ đệm lên bộ nhớ đệm thứ 2 sẽ được lưu biến thứ 2 thừa 1 byte
+	
+- sau đó lại so sánh với biến thứ 3 trong trường hợp này là 4 byte > 1 byte bộ nhớ đệm lên sẽ quét lần thứ 2 thêm 4 byte và thừa 1 byte bộ nhớ đệm
+	
+>>> ta được tổng là = 4byte +4byte = 8yte
+	
+
+-Ví dụ:
+	
+#include <stdio.h>
+	
+#include <stdint.h>
+
+
+typedef struct 
+	
+{
+	
+    uint8_t  a;          // 1byte tronng 4byte thừa 3byte bộ nhớ đệm
+	
+    uint16_t b;          // 2byte so sánh với 3 byte > 2<3 > lưu vào bộ nhớ đệm thừa 1byte
+	
+    uint32_t c;          // 4byte so sánh với 1 byte bộ nhớ đệm > 4>1 > quét lần 2 4byte thừa 1 byte bộ nhớ đệm
+	
+}byte;
+	
+
+// tổng 4 byte + 4byte = 8byte
+	
+
+typedef struct 
+	
+{
+    uint32_t  e;         // 4byte trong 4byte quét > đủ > không có bộ nhớ đệm
+	
+    uint8_t   f;         // quét lần 2 1byte vs 4byte quét > thừa 3byte bộ nhớ đệm  
+	
+    uint16_t  g;         // so sánh vs 3byte bộ nhớ đệm > 2byte<3byte > thừ 1 byte bộ nhớ đệm 
+	
+}count_byte;
+
+// tổng 4 byte + 4byte = 8byte
+
+typedef struct 
+	
+{
+    uint32_t  i;    
+	
+    uint8_t   j; 
+	
+    uint32_t  k; 
+	
+    uint8_t  h; 
+	
+}count_byte2;
+
+int main(int argc, char const *argv[])
+	
+{
+    byte date;
+	
+    count_byte cnt;
+	
+    count_byte2 nn;
+	
+    printf("size : %d\n",sizeof(date) );
+	
+    printf("size : %d\n",sizeof(cnt));
+	
+    printf("size : %d\n",sizeof(nn));
+	
+    return 0;
+	
+}
+
    
    
 
