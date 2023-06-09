@@ -1259,6 +1259,68 @@ int main(int argc, char const *argv[])
 	
 }
 
+*cách tính byte cho các phần tử là mảng trong struct
+	
+- cho ví dụ :
+	
+	
+typedef struct 
+	
+{     
+	
+    uint8_t     day[3];       //8  
+	
+    uint64_t   week[6];       //48
+	
+    uint32_t  month[4];       //16 
+	
+    uint16_t   year[5];       //16
+	
+}count_byte3;
+
++ta tính như sau:
+	
+- đầu tiên ta tách các phần tử trong mảng về thành các biến như sau:
+	
+typedef struct
+	
+{
+	
+uint8_t day[0];
+	
+uint8_t day[1];
+	
+uint8_t day[2];
+	
+lần lượt với các mảng còn lại
+	
+- sau đó sẽ làm như các bước hướng dẫn tính byte cho biến ở trên
+	
+ta có:
+	
+quét 1 : 8yte thừa 1 byte bộ nhớ đệm
+	
+quét 2:  vì thiếu bộ nhớ đệm lên thực hiện quét lần 2 với 8byte
+	
+quét 3:   8byte
+	
+quét 4:   8byte
+	
+quét 5:   8byte
+	
+quét 6:   8byte
+	
+quét 7:   8byte
+	
+quet 8:   8byte
+	
+quét  9 : 8byte
+	
+quét  10: 8byte
+	
+tổng :88byte         
+
+
    
    
 
