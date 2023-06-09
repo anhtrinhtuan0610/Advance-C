@@ -674,6 +674,8 @@ int main()
 trong quá trình thực thi chương trình. Thay vào đó, trình biên dịch sẽ luôn đọc lại giá trị của biến từ vị trí bộ nhớ của nó (memory location) mỗi khi biến được sử dụng trong chương trình.
 
    2. Phân vùng nhớ:
+	![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/388e1593-e435-4666-b4b6-3dd49097a333)
+
    
 - bộ nhớ gồm 2 phần 
    
