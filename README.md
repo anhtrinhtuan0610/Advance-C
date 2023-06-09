@@ -1318,7 +1318,128 @@ quét  9 : 8byte
 	
 quét  10: 8byte
 	
-tổng :88byte         
+tổng :88byte 
+	
+2. kiểu dữ liệu union.
+	
+- giống với struct thì union cũng là kiểu dữ liệu do người dùng tự định nghĩa
+	
+- "union" là 1 kiểu dữ liệu giống như "struct" nhưng khác biệt ở chỗ chỉ được phép sử dụng một thành viên của "union" tại một thời điểm. "union" cho phép bạn lưu trữ nhiều giá trị của các loại dự liệu khác nhau trong cùng một vùng nhớ dưới một tên
+	
+=> nghĩa là tất cả các biến sẽ cùng được lưu tại 1 vùng nhớ và sẽ cùng có 1 giá trị trong cùng 1 thời điểm vì vậy ta sẽ không thể sử dụng các biến trong union cùng 1 lúc.
+	
++ cú pháp khai báo các biến có kiểu dữ liệu union.
+	
+typedef union
+	
+{
+	
+<type of data> <member 1>
+	
+<type of data> <member 1>
+	
+<type of data> <member 1>
+	
+<type of data> <member 1>.
+	
+....
+	
+}<name union>;
+	
+
+-ví dụ về cách khai báo các biến và cách gán giá trị
+	
+    #include <stdio.h>
+	
+    #include <stdint.h>
+
+    typedef union 
+	
+    {
+	
+        uint32_t var1;
+	
+        uint16_t var2;
+	
+        uint64_t var3;
+	
+    }typeData;
+
+
+    int main(int argc, char const *argv[])
+	
+    {
+	
+        typeData data = {.var1 = 5, .var2 = 7, .var3 = 8};
+	
+
+        printf("gia tri : %d\n",data.var3);
+	
+        printf("gia tri : %d\n",data.var2);
+	
+        printf("gia tri : %d\n",data.var1);
+
+        printf("gia tri : %p\n",&data.var3);
+	
+        printf("gia tri : %p\n",&data.var2);
+	
+        printf("gia tri : %p\n",&data.var1);
+	
+        printf("gia tri : %p\n",&data);
+	
+        return 0;
+	
+    }
+    
+	
+    ***kết luận :
+	
+- giống với struct là có thể khai báo nhiều biến có cùng kiểu dữ liệu hoặc gồm nhiều kiểu dữ liệu khác nhau nhưng "struct" có thể sử dụng nhiều biến trong cùng 1 thời điểm và các biến này được lưu ở các địa chỉ khác nhau còn "union" chỉ có thể sử dụng 1 biến tại 1 thời điểm.
+	
+2.1 kích thước của union
+	
+- kích thước của "union" = kích thước của "member lớn nhất"
+	
+
++ví dụ :
+	
+#include <stdio.h>
+	
+	
+#include <stdint.h>
+
+typedef union 
+	
+{
+        
+    uint32_t var1;
+	
+    uint16_t var2;
+	
+    uint64_t var3;
+	
+
+}typeData;
+
+
+	
+int main(int argc, char const *argv[])
+	
+{
+	
+    typeData sz;
+
+    printf("kich thuoc cua union la : %d",sizeof(sz));
+	
+    return 0;
+	
+}
+
+- trong trường hợp này kích thước của "union" sẽ chính bằng kích thước của phần tử lớn nhất trong "union" 
+	
+"kich thuoc cua union la : 8"
+
+
 
 
    
