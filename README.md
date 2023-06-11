@@ -1438,6 +1438,69 @@ int main(int argc, char const *argv[])
 - trong trường hợp này kích thước của "union" sẽ chính bằng kích thước của phần tử lớn nhất trong "union" 
 	
 "kich thuoc cua union la : 8"
+	
+	
+	                      =====================Buổi 7 : Goto====================
+	
+
+1. Goto:
+	
+- câu lệch thực hiện để giúp ta có thể nhảy đến bất cứ nơi đâu trong chương trình.
+	
+- nhược điểm là làm thay đổi tính tuần tự của chương trình có thể gây lỗi
+	
+=> tức là  khi bạn muốn thực hiện nhảy đền một vị trí khác của chương trình không theo tuần tự của chương trình thì ta sẽ sử dụng câu lệnh này 
++cú pháp: 
+
+goto ten_nhan;
+..
+.
+ten_nhan: lenh;
+
++Ví dụ:
+	
+#include <stdio.h>
+
+
+
+int main(int argc, char const *argv[])
+{
+	
+    int a;
+
+    nhap:
+	
+    printf("vui long nhap vao a : ");
+	
+    scanf("%d",&a);
+	
+
+	
+    if(a < 10)
+	      
+    {
+	      
+        goto nhap;
+	      
+    }
+	      
+    return 0;
+	      
+}
+	      
+- giải thích cách hoạt động của lệnh goto trong chương trình này 
+	      
+gt : chương trình yêu cầu nhập vào a và so sánh giá trị a nhập vào với điều kiện trong câu lệnh if
+	      
+nếu a < 10 thì thực hiện câu lệnh goto đi đến nhãn mang tên nhap :
+	
+vào lại so sánh trong câu lệnh if
+	
+đến khi nào mà a  nhập vào lớn hơn hoặc bằng 10 sẽ không thực hiện câu lệnh goto nữa
+	
+=> tức là nếu điều kiện trong if còn đúng thì còn thực hiện câu lệnh goto đến khi nào điều kiện trong if sai thì thôi.
+	
+
 
 
 
