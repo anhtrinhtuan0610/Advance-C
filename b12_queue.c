@@ -119,10 +119,18 @@ bool isEmpty(queue *queue)
 lấy rear - front + 1*/
 
 
-bool isFull(queue *q)
+    bool isFull(queue *queue)
 {
-    return ((q->rear + 1) % q->max_size == q->front);             
-}
+    if (queue->rear == SIZE - 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}            
+
 
 
 
