@@ -1500,6 +1500,88 @@ vào lại so sánh trong câu lệnh if
 	
 => tức là nếu điều kiện trong if còn đúng thì còn thực hiện câu lệnh goto đến khi nào điều kiện trong if sai thì thôi.
 	
+	1.1: Exit
+- hàm "exit()" trong c có chức năng ngay lập tức thóa khỏi chương trình 
+- hàm "exit()" thực chất là 1 lời gọi tới hệ điều hành .
+- bạn cần khai báo thư viện "stdlib.h" để sử dụng thư viên này.
+
++Ví dụ 1:
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(int argc, char const *argv[])
+{
+    for(int i = 0; i < 10; i++)
+    {
+       printf("i = %d\n",i);
+       if( i == 5 )
+       {
+        exit(0);
+       } 
+    }
+    return 0;
+}
+
+=> khác với break thì exit sẽ lập tức dừng lại chương trình còn break chỉ có khả năng thoát khoi vòng lặp .
+	
+2. Setjum
+	
+2.1 thư viện "setjmp.h"
+	
+- thư viện "setjmp" trong c cung cấp các hàm để quản lý các điểm nhảy trong chương  trình . có thể sử dụng các hàm này để đăng ký các điểm nhảy và quay lại với điểm nhảy đã đăng ký đó trong chương trình.
+	
+- hàm chính trong thư viện này là "setjmp()" và "longjmp()".
+	
+- hàm "setjmp()" được sử dụng để đăng ký điểm nhảy và lưu trữ trạng thái của chương trình tại thời điểm đó . Hàm này sẽ trả về 0 nếu nó được gọi lần đầu tiên trong chương trình của bạn và trả về một giá trị khác 0 nếu nó được gọi hàm "longjmp()" . Hàm "setjmp" thường được sử dụng để đăng ký một điểm nhảy cho việc xử lý các trường hợp "ngoại lệ". Bạn có thể lưu trữ giá trị trả về hàm "setjmp()" để sử dụng về sau trong chương trình.
+	
+- Hàm "longjmp()" được sử dụng để "nhảy" trở lại điểm nhảy đã được đăng ký bởi hàm "setjmp()". Trong hàm "longjmp()" cần truyền đối số là biến kiểu"jmp_buf" và 1 giá trị không âm, đại diện cho giá trị trả về của hàm "setjmp()". Khi hàm "longjmp()" được gọi, chương trình sẽ trở lại điểm nhảy đã được đăng ký trước bởi hàm "setjmp()" và bắt đầu thực thi từ đó. Hàm "longjmp()" thường được sử dụng để thoát khỏi các hàm con sâu hơn trong chương trình. Tất cả các biến cục bộ sẽ bị mất đi và chương trình sẽ tiếp thực thực thi từ điểm nhảy.
+	
+* 1 số lưu ý khi sủ dụng thư viện "setjmp()":
+	
++ Cần phải sử dụng cặp hàm "setjmp()" - "longjmp()" cừng với nhau trong chương trình
+	
++ Khi gọi hàm "longjmp()" chương trình sẽ trở về điểm nhảy quy định bởi hàm "setjmp()" gần nhất, nên cần chắc chắn rằng hàm "setjmp()" đã được gọi trước đó.
+	
++ Biến kiểu "jmp_buf" phải là 1 đối tượng lớn và phức tạp, nên bạn cần phải khai báo nó trước vào đầu chương trình .
+tránh ảnh hưởng đến hiệu suất của chương trình.
+	
+- Ví dụ:
+	
+#include <stdio.h>
+	
+#include <stdlib.h>   // để sử hàm exit thoát chương trình
+	
+#include <setjmp.h>   // thư viện "setjmp.h" trong c cung cấp các hàm để quản lý điểm nhảy trong chương trình
+	
+
+
+int main(int argc, char const *argv[])
+	
+{
+	
+    jmp_buf jumb;                 // tạo 1 biến theo kiểu jmp_buf
+	
+    int i = setjmp(jumb);           // tạo 1 điểm nhảy i 
+	
+    printf("i = %d\n",i);
+	
+    if(i != 0)
+	
+    {
+	
+        exit(0);
+	
+    }
+
+	
+    longjmp(jumb, 1);              // 
+	
+    return 0;
+	
+}
+
+	
 
 
 
