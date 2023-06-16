@@ -1581,6 +1581,435 @@ int main(int argc, char const *argv[])
 	
 }
 
+
+                                            ==================buổi 8 : poiter======================/
+					    
+
+1. poiter
+   
+1,1 biến con trỏ
+
+
+ví dụ:
+
+int a = 10;
+
+int *ptr = 0x01;
+
+
+- biến bình thường sẽ lưu giá trị
+- 
+- biến con trỏ sẽ lưu giá trị địa chỉ của biến khác.
+- 
+
+nếu ta có địa chỉ của 1 biến nào đó mà muốn lấy giá trị của biến đó ta thêm * trước địa chỉ đó.
+
+ví dụ:
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <stdint.h>
+
+
+
+int a = 10;
+
+char b = 'C';
+
+void tong()
+
+{
+
+    printf("ren roi noi di cung!");
+    
+}
+
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    int *ptr = &a;
+    
+    *ptr = 25;
+    
+    printf("chao buoi sang\n");
+    
+    printf("gia tri dia chi cua a la : %p\n",ptr);
+    
+    printf("gia tri dia chi cua b la : %p\n",&b);
+    
+    printf("gia tri dia chi cua tong la : %p\n",&tong);
+    
+    printf("gia tri cua a la : %d\n",a);
+    
+    return 0;
+    
+}
+
+
+- ở đây ta có int *ptr là khai báo 1 biến con trỏ "= a" là để khai báo rằng giá trị biến con trỏ ptr là giá trị địa chỉ của con trỏ a .
+  
+- còn  ở dưới ta có  "*ptr" = 25 tức là gán giá trị của a = 23
+  
+vì sao trên *ptr mà dưới cũng *ptr mà lại cho giá trị khác nhau?
+
+Vì trên int *ptr ở đây là 1 biến con trỏ bản chất của con trỏ là giá trị của nó sẽ là địa chỉ của biến mà con trỏ trỏ tới tức là ở đây biến con trỏ sẽ lưu địa chỉ của biến a.
+
+còn ở dưới ở đây không phải là con trỏ mà là giá trị tại địa chỉ mà con trỏ trỏ tới trên là giá trị địa chỉ dưới là giá trị tại địa chỉ mà con trỏ trở tới lên khi này nó có giá trị bằng giá trị của biến a là bằng 10 và sau đó được gán bằng 25.
+
+
+1.2 hàm con trỏ
+
+- cũng giống với biến con trỏ là lưu địa chỉ nhưng khác với con trỏ biến thì hàm con trỏ lưu địa chỉ của hàm.
+cho ví dụ:
+
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <stdint.h>
+
+
+
+void tong(int a,int b)
+
+{
+
+    printf("tong cua %d va %d = %d\n",a,b,a+b);
+    
+}
+
+float thuong(float a ,float b)
+
+{
+
+    return a*b;
+    
+}
+
+int main(int argc, char const *argv[])
+
+{
+    void(*ptr)(int,int);
+    
+    ptr = &tong;
+    
+    ptr(8,10);
+
+    float(*ptr1)(float,float);
+    
+    ptr1 = &thuong;
+    
+    printf("thuong cua a va b la : %.2f",ptr1(1.2,2.1));
+    
+    return 0;
+    
+}
+
+- ta có : cách khởi tạo 1 con trỏ tới hàm như sau :
+
+void (*ptr)(int,int);
+
+trong đó ta có hàm được con trỏ trở tới không có giá trị trả về lên là void(*ptr) 2 biến input parameter có kiểu dữ liệu là kiểu int lên sẽ là void (*ptr)(int,int);
+
+sau đó gán giá trị của con trỏ bằng địa chỉ của hàm tức là ptr = &tong;
+
+sau khi gán giá trị cho con trỏ bằng địa chỉ hàm đó thì có thể thay thế hàm bằng con trỏ đó như sau:
+
+ptr(8,10) ở đây ta không cần gọi lại hàm tong() mà sẽ thay thế bằng ptr() vì lúc này con trỏ ptr chính bằng địa chỉ của hàm tong()
+
+
+tương tự như vậy với hàm thuong() thì có kiểu trả về là float,tham số đầu vào của hàm cũng có kiểu float lên khai báo con trỏ với hàm thuong() như sau:
+float(*ptr1)(float,float);
+
+ptr = & thuong;
+
+
+1.2.2 cũng có thể thông qua con trỏ hàm sử dụng hàm được trỏ tới làm input parameter của 1 hàm khác như sau:
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <stdint.h>
+
+
+
+void tong(int a,int b)
+
+{
+
+    printf("tong cua %d va %d = %d\n",a,b,a+b);
+    
+}
+
+
+void hieu(int a,int b)
+
+{
+
+    printf("hieu cua %d va %d = %d\n",a,b,a-b);
+    
+}
+
+void tich(int a,int b)
+
+{
+
+    printf("tong cua %d va %d = %d\n",a,b,a*b);
+    
+}
+
+void thuong(int a,int b)
+
+{
+
+    printf("thuong cua %d va %d = %.2f\n",a,b,(float)a/b);
+    
+}
+
+
+void pheptinh(int a, int b, void(*ptr)(int,int))
+
+{
+
+    printf("phep tinh la : \n");
+
+    ptr(a,b);
+    
+}
+
+int main(int argc, char const *argv[])
+
+{
+
+    pheptinh(8, 6, &tong);
+    
+    pheptinh(8, 6, &hieu);
+    
+    pheptinh(8, 6, &tich);
+    
+    pheptinh(8, 6, &thuong);
+    
+    return 0;
+    
+}
+
+- ta thấy:
+- 
+"void tong(int a,int b)
+
+{
+
+    printf("tong cua %d va %d = %d\n",a,b,a+b);
+    
+}
+
+void hieu(int a,int b)
+
+{
+
+    printf("hieu cua %d va %d = %d\n",a,b,a-b);
+    
+}
+
+void tich(int a,int b)
+
+{
+
+    printf("tong cua %d va %d = %d\n",a,b,a*b);
+    
+}
+
+void thuong(int a,int b)
+
+{
+
+    printf("thuong cua %d va %d = %.2f\n",a,b,(float)a/b);
+    
+}"
+
+đều là những hàm không có kiểu trả về đồng thời tham số truyền vào đều có kiểu int 
+
+=> vì vậy ở đây ta sử dụng biến con trỏ hàm làm tham số truyền vào của 1 hàm mang tên pheptinh() 
+
+tức là ta sẽ khởi tạo 1 con trỏ hàm như sau:
+
+void pheptinh(int a, int b, void(*ptr)(int, int);
+
+ptr(a,b);
+
+
+sau đó trong hàm main ta gọi hàm pheptinh(8,6, &tong);
+
+tức này ta đã truyền vào địa chỉ của thằng tổng cho con trỏ ptr và như trên đã nói khi nó gắn bằng địa chỉ của 1 hàm thì nó có thể thay thế hàm đó thực hiện chức năng trong hàm và ở đây nó đã trở thành 1 tham số truyền vào cho hàm khác
+
+=> tức là có thể sử dụng con trỏ hàm đề làm 1 iput parametter cho hàm khác.
+
+1.2.3 con trỏ đặc biệt void *ptr
+
+xét ví dụ:
+
+#include <stdio.h>
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    int a = 10;
+    
+    char b = 'c';
+    
+    double c = 10.65;
+    
+
+    int *ptr = &a;
+    
+    ptr = &b;
+    
+    ptr = &c;
+    
+    return 0;
+    
+}
+
+ta có biến con trỏ :
+
+int *ptr 
+
+- tức là đây là biến con trỏ có kiểu trả về là int
+- 
+lên nếu gán giá trị của con trỏ đó băng giá trị địa chỉ của biên có kiểu dữ liệu khác kiểu int sẽ lỗi
+
+
+*còn nếu khai báo biến con trỏ theo kiểu đặc biệt void *ptr thì có thể lưu hết tất cả giá trị địa chỉ của tất cả các loại biến
+
+ví dụ:
+
+#include <stdio.h>
+
+
+int main(int argc, char const *argv[])
+
+{
+    int a = 10;
+    
+    char b = 'c';
+    
+    double c = 10.65;
+    
+
+    void *ptr = &a;
+
+    
+    printf("gia tri cua a la : %d\n",ptr);
+
+    ptr = &b;
+    
+    printf("gia tri cua b la : %p\n",ptr);
+
+    ptr = &c;
+    
+    printf("gia tri cua b la : %p\n",ptr);
+
+    return 0;
+    
+}
+
+
+=> với con trỏ kiểu void ta có thể lưu hết tất các các địa chỉ của tất cả các biến 
+
+- vậy với địa chỉ đó thì con trỏ có lấy được giá trị tại địa chỉ nó trỏ tới hay không câu trả lời là không.
+  
+vì với kiểu trả về là void nó sẽ không biết giá trị được lưu tại địa chỉ đó có kiểu gì lên nó sẽ không đọc ra được giá trị đó
+
+- vậy có cách nào để lấy giá trị đó không câu trả lời là có ta phải ép kiểu cho con trỏ đó
+  
+ví dụ 
+
+ta có 
+
+int a = 10;
+
+void *ptr = &a;
+
+    printf("gia tri cua a la : %d\n",ptr);
+    
+- để lấy được giá trị của  a ta phải ép kiểu cho con trỏ ptr như sau:
+  
+đó là thêm
+
+ "*(kieu_tra_ve*)ptr"
+ 
+
+printf("gia tri cua a la : %d\n",*(int*)ptr);
+
+
+
+-Ví dụ:
+
+#include <stdio.h>
+
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    int a = 10;
+    
+    char b = 'c';
+    
+    double c = 10.65;
+    
+
+    void *ptr = &a;
+
+    
+    printf("gia tri cua a la : %d\n",ptr);
+    
+    printf("gia tri cua a la : %d\n",*(int*)ptr);
+    
+
+    ptr = &b;
+    
+    printf("gia tri cua b la : %p\n",ptr);
+    
+    printf("gia tri cua b la : %c\n",*(char*)ptr);
+    
+
+    ptr = &c;
+    
+    printf("gia tri cua c la : %p\n",ptr);
+    
+    printf("gia tri cua b la : %.2f\n",*(double*)ptr);
+    
+
+    return 0;
+    
+}
+Output:
+
+gia tri cua a la : 6291092
+
+gia tri cua a la : 10
+
+gia tri cua b la : 00000000005ffe93
+
+gia tri cua b la : c
+
+gia tri cua c la : 00000000005ffe88
+
+gia tri cua b la : 10.65
+
+
+
 	
 
 
