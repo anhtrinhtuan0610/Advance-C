@@ -2157,7 +2157,8 @@ int main()
 Trong ví dụ này, chúng ta khai báo hai con trỏ `p1` và `p2` trỏ tới hai biến `a` và `b` tương ứng. Hàm `swap` có hai tham số kiểu con trỏ cấp 2 để nhận địa chỉ của `p1` và `p2` và thực hiện hoán đổi giá trị của chúng. Trong hàm `swap`, chúng ta sử dụng một biến trung gian `temp` để lưu giá trị của `*p1`, sau đó gán `*p1 = *p2`, `*p2 = temp` để hoán đổi giá trị của `p1` và `p2`. Trong hàm `main`, chúng ta gọi `swap` bằng cách truyền địa chỉ của `p1` và `p2` cho hai tham số của hàm. Kết quả in ra sẽ cho thấy rằng giá trị của biến `a` và `b` được hoán đổi thành công.
 
 
-                                       =====================Buổi 10 : bài tập =====================
+
+                                       =====================Buổi 9 : bài tập =====================
 				       
 
 bài 1:
