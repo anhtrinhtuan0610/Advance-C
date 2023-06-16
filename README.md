@@ -1994,6 +1994,7 @@ int main(int argc, char const *argv[])
     return 0;
     
 }
+
 Output:
 
 gia tri cua a la : 6291092
@@ -2007,6 +2008,133 @@ gia tri cua b la : c
 gia tri cua c la : 00000000005ffe88
 
 gia tri cua b la : 10.65
+
+2. hàm con trỏ
+
+- khi sử dụng 1 hàm theo kiểu con trỏ ta có thể lưu nhiều địa chỉ trong cùng 1 mảng với con trỏ.
+  
+-Ví dụ:
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+
+int a = 10;
+
+
+char b = 'c';
+
+
+void tong (int a, int b)
+
+{
+
+    printf("tong cua 2 so a va b la : %d",a+b);
+    
+}
+
+int main(int argc, char const *argv[])
+
+{
+
+    void *arry[] = {&a, &b, &tong};
+    
+
+    printf("gia tri cua a la :%d\n", *(int *)arry[0]);
+    
+    printf("gia tri cua a la :%c\n", *(char *)arry[1]);
+    
+    
+    int(*ptr)(int,int) = (void (*)(int,int))arry[2];
+    
+    int tong = ptr(5,8);
+    
+    
+
+
+    return 0;
+    
+}
+
+3. Con trỏ NULL
+
+-Ví dụ:
+
+#include <stdio.h>
+
+#include <stlib.h>
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    int*ptr;
+    
+    
+    return 0;
+    
+}
+
+- con trỏ "int*ptr; " khi không được gán một giá trị địa chỉ cho nó nó sẽ trỏ đến 1 giá trị rác, đôi khi địa chỉ đó chính là 1 địa chỉ nào đó trong chương trình của mình
+- 
+khi con trỏ đã trỏ đến địa chỉ rác đó thì con trỏ có thể thay đổi giá trị được lưu tại địa chỉ đó được. Có thể vì nguyên nhân đó có thể làm cho chương trình của mình bị lỗi.
+
+=> Nên khi khai báo 1 con trỏ mà không sử dụng thì người ta sẽ khai báo cho nó 1 địa chỉ NULL (có địa chỉ là 0x00 và có giá trị = 0) hoặc khi ta khai báo 1 con trỏ mà khi sử dụng xong ta không muốn sử dụng nữa thì lúc đó ta cũng khai báo địa chỉ NULL cho con trỏ.
+
+-Ví dụ:
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    int*ptr = NULL;
+    
+
+    printf("gia tri cua con tro la : %d",*ptr);
+    
+
+    return 0;
+    
+}
+
+4. poiter to poiter (con trỏ tới con trỏ) - con trỏ cấp 2
+   
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/693790f0-5dcc-4a03-b78c-75d197927a9c)
+
+ 
+- ở đây ta có con trỏ cấp 1 với int *ptr có giá trị là 0xc1 và có địa chỉ là 0xa3;
+vậy thì con trỏ poiter to poiter là gì ?
+
+- là 1 con trỏ cấp 2 dùng để lưu địa chỉ của con trỏ cấp 1 nó có giá trị = địa chỉ của con trỏ cấp 1 ở đây là 0xa3 và có giá trị = 0xc1
+
++Kết luận:
+
+- khi mà ta chỉ muốn đọc giá trị của biến thì dùng truyền vào biến còn khi nào ta muốn đọc và có thể thay đổi giá trị của biến thi dùng poiter.
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
