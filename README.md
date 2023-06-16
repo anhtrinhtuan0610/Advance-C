@@ -2119,6 +2119,45 @@ vậy thì con trỏ poiter to poiter là gì ?
 
 - khi mà ta chỉ muốn đọc giá trị của biến thì dùng truyền vào biến còn khi nào ta muốn đọc và có thể thay đổi giá trị của biến thi dùng poiter.
 
+  - Trong ngôn ngữ lập trình C, con trỏ cấp 2 (hay con trỏ tới con trỏ) là một con trỏ trỏ tới một con trỏ khác. Nó cho phép ta truy xuất đến giá trị hoặc địa chỉ của một biến thông qua một con trỏ trung gian. Có nhiều trường hợp mà con trỏ cấp 2 rất hữu ích, như khi ta làm việc với các cấu trúc dữ liệu phức tạp.
+
+Cú pháp của con trỏ cấp 2 là `type **var;`, trong đó `type` là kiểu dữ liệu được trỏ đến và `var` là tên của con trỏ. Chúng ta có thể sử dụng toán tử `&` để lấy địa chỉ của con trỏ cấp 1, và sử dụng toán tử `*` để lấy giá trị của biến mà con trỏ cấp 2 đang trỏ tới. Để truyền con trỏ cấp 2 vào hàm, ta cần khai báo đối số tương ứng với con trỏ cấp 2 bằng cách sử dụng cú pháp `type **var`.
+
+#include <stdio.h>
+
+void swap(int **p1, int **p2) {
+
+    int *temp = *p1;
+    
+    *p1 = *p2;
+    
+    *p2 = temp;
+    
+}
+
+int main()
+{
+
+    int a = 10, b = 20;
+    
+    int *p1 = &a, *p2 = &b;
+    
+
+    printf("Before swap: a = %d, b = %d\n", a, b);
+    
+    swap(&p1, &p2);
+    
+    printf("After swap: a = %d, b = %d\n", a, b);
+    
+
+    return 0;
+    
+}
+
+Trong ví dụ này, chúng ta khai báo hai con trỏ `p1` và `p2` trỏ tới hai biến `a` và `b` tương ứng. Hàm `swap` có hai tham số kiểu con trỏ cấp 2 để nhận địa chỉ của `p1` và `p2` và thực hiện hoán đổi giá trị của chúng. Trong hàm `swap`, chúng ta sử dụng một biến trung gian `temp` để lưu giá trị của `*p1`, sau đó gán `*p1 = *p2`, `*p2 = temp` để hoán đổi giá trị của `p1` và `p2`. Trong hàm `main`, chúng ta gọi `swap` bằng cách truyền địa chỉ của `p1` và `p2` cho hai tham số của hàm. Kết quả in ra sẽ cho thấy rằng giá trị của biến `a` và `b` được hoán đổi thành công.
+
+
+
 
 
 
