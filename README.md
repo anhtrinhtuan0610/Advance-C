@@ -2431,6 +2431,470 @@ int main(int argc, char const *argv[])
 }
 
 
+		===================== Buổi 10 : Linklist ===================
+                                ===== Danh sách liên kết ======
+
+1. danh sách liên kết Linklist.
+   
+Một Danh sách liên kết (Linked List) là một dãy các cấu trúc dữ liệu được kết nối với nhau thông qua các liên kết (link). Hiểu một cách đơn giản thì Danh sách liên kết là một cấu trúc dữ liệu bao gồm một nhóm các nút (node) tạo thành một chuỗi. Mỗi nút gồm dữ liệu ở nút đó và tham chiếu đến nút kế tiếp trong chuỗi.
+
+Danh sách liên kết là cấu trúc dữ liệu được sử dụng phổ biến thứ hai sau mảng. Dưới đây là các khái niệm cơ bản liên quan tới Danh sách liên kết:
+
+Link (liên kết): mỗi link của một Danh sách liên kết có thể lưu giữ một dữ liệu được gọi là một phần tử.
+
+Next: Mỗi liên kết của một Danh sách liên kết chứa một link tới next link được gọi là Next.
+
+First: một Danh sách liên kết bao gồm các link kết nối tới first link được gọi là First.
+
+Biểu diễn Danh sách liên kết (Linked List)
+
+Danh sách liên kết có thể được biểu diễn như là một chuỗi các nút (node). Mỗi nút sẽ trỏ tới nút kế tiếp.
+
+ 
+
+
+Cấu trúc dữ liệu Danh sách liên kết (Linked List)
+
+
+Dưới đây là một số điểm cần nhớ về Danh sách liên kết:
+
+Danh sách liên kết chứa một phần tử link thì được gọi là First.
+
+Mỗi link mang một trường dữ liệu và một trường link được gọi là Next.
+
+Mỗi link được liên kết với link kế tiếp bởi sử dụng link kế tiếp của nó.
+
+Link cuối cùng mang một link là null để đánh dấu điểm cuối của danh sách.
+
+Các loại Danh sách liên kết (Linked List)
+
+Dưới đây là các loại Danh sách liên kết (Linked List) đa dạng:
+
+Danh sách liên kết đơn (Simple Linked List): chỉ duyệt các phần tử theo chiều về trước.
+
+Danh sách liên kết đôi (Doubly Linked List): các phần tử có thể được duyệt theo chiều về trước hoặc về sau.
+
+Danh sách liên kết vòng (Circular Linked List): phần tử cuối cùng chứa link của phần tử đầu tiên như là next và phần tử đầu tiên có link tới phần tử cuối cùng như là prev.
+
+Các hoạt động cơ bản trên Danh sách liên kết
+
+Dưới đây là một số hoạt động cơ bản có thể được thực hiện bởi một danh sách liên kết:
+
+
+Hoạt động chèn: thêm một phần tử vào đầu danh sách liên kết.
+
+Hoạt động xóa (phần tử đầu): xóa một phần tử tại đầu danh sách liên kết.
+
+Hiển thị: hiển thị toàn bộ danh sách.
+
+Hoạt động tìm kiếm: tìm kiếm phần tử bởi sử dụng khóa (key) đã cung cấp.
+
+Hoạt động xóa (bởi sử dụng khóa): xóa một phần tử bởi sử dụng khóa (key) đã cung cấp.
+
+Hoạt động chèn trong Danh sách liên kết
+
+Việc thêm một nút mới vào trong danh sách liên kết không chỉ là một hoạt động thêm đơn giản như trong các cấu trúc dữ liệu khác (bởi vì chúng ta có dữ liệu và có link). Chúng ta sẽ tìm hiểu thông qua sơ đồ dưới đây. Đầu tiên, tạo một nút bởi sử dụng cùng cấu trúc và tìm vị trí để chèn nút này.
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/8c18ab79-43f3-4968-bf52-9b3ff2d44120)
+
+
+Hoạt động chèn trong Danh sách liên kết
+
+Giả sử chúng ta cần chèn một nút B vào giữa nút A (nút trái) và C (nút phải). Do đó: B.next trỏ tới C.
+
+NewNode.next −> RightNode;
+
+Hình minh họa như sau:
+
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/d422fbf8-cd02-4b80-ac57-d6352df2f580)
+
+ 
+
+
+Hoạt động chèn trong Danh sách liên kết
+
+Bây giờ, next của nút bên trái sẽ trở tới nút mới.
+
+LeftNode.next −> NewNode;
+
+Hoạt động chèn trong Danh sách liên kết
+
+Quá trình trên sẽ đặt nút mới vào giữa hai nút. Khi đó danh sách mới sẽ trông như sau:
+
+Hoạt động chèn trong Danh sách liên kết
+
+ ![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/6e818e37-0a30-46c4-8725-7643d8b94c4d)
+
+
+
+Các bước tương tự sẽ được thực hiện nếu chèn nút vào đầu danh sách liên kết. Trong khi đặt một nút vào vị trí cuối của danh sách, thìnút thứ hai tính từ nút cuối cùng của danh sách sẽ trỏ tới nút mới và nút mới sẽ trỏ tới NULL.
+
+
+Hoạt động xóa trong Danh sách liên kết cũng phức tạp hơn trong cấu trúc dữ liệu khác. Đầu tiên chúng ta cần định vị nút cần xóa bởi sử dụng các giải thuật tìm kiếm.
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/f9739ad3-eee9-4452-a4d9-80db67aa7d8d)
+
+
+Bây giờ, nút bên trái (prev) của nút cần xóa nên trỏ tới nút kế tiếp (next) của nút cần xóa.
+
+LeftNode.next −> TargetNode.next;
+
+ ![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/cb1841c1-fb8c-4ac6-aef2-1ca86ac2bcc2)
+
+
+
+Quá trình này sẽ xóa link trỏ tới nút cần xóa. Bây giờ chúng ta sẽ xóa những gì mà nút cần xóa đang trỏ tới.
+
+TargetNode.next −> NULL;
+
+ ![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/9ae707aa-132b-43a4-954b-4f92f7fa4b33)
+
+
+Hoạt động xóa trong Danh sách liên kết
+
+Nếu bạn cần sử dụng nút đã bị xóa này thì bạn có thể giữ chúng trong bộ nhớ, nếu không bạn có thể xóa hoàn toàn hẳn nó khỏi bộ nhớ.
+
+ 
+
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/6b858cfc-e80e-4cee-ade8-84163a19a62e)
+
+
+
+Hoạt động đảo ngược Danh sách liên kết
+
+Với hoạt động này, bạn cần phải cẩn thận. Chúng ta cần làm cho nút đầu (head) trỏ tới nút cuối cùng và đảo ngược toàn bộ danh sách liên kết.
+
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/3aed99e4-4122-4649-a61f-9326cfecd431)
+
+
+Đầu tiên, chúng ta duyệt tới phần cuối của danh sách. Nút này sẽ trỏ tới NULL. Bây giờ điều cần làm là làm cho nút cuối này trỏ tới nút phía trước của nó.
+
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/a12a5b0d-dd0b-4d88-bae5-89689d178075)
+
+
+Chúng ta phải đảm bảo rằng nút cuối cùng này sẽ không bị thất lạc, do đó chúng ta sẽ sử dụng một số nút tạm (temp node – giống như các biến tạm trung gian để lưu giữ giá trị). Tiếp theo, chúng ta sẽ làm cho từng nút bên trái sẽ trỏ tới nút trái của chúng.
+
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/9f87c990-a263-4caa-962e-abb6d0ee5189)
+
+
+Sau đó, nút đầu tiên sau nút head sẽ trỏ tới NULL.
+
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/861fe98c-e826-4126-af53-36dca0307c96)
+
+
+Chúng ta sẽ làm cho nút head trỏ tới nút đầu tiên mới bởi sử dụng các nút tạm.
+
+ 
+![image](https://github.com/anhtrinhtuan0610/Advance-C/assets/134681201/cb7409b3-2369-489a-862b-fab6e4b97ea9)
+
+
+Bây giờ Danh sách liên kết đã bị đảo ngược.
+
+Danh sách liên kết (Linked List) trong C
+
+Một Danh sách liên kết (Linked List) là một dãy các cấu trúc dữ liệu được kết nối với nhau thông qua các liên kết (link). Hiểu một cách đơn giản thì Danh sách liên kết là một cấu trúc dữ liệu bao gồm một nhóm các nút (node) tạo thành một chuỗi. Mỗi nút gồm dữ liệu ở nút đó và tham chiếu đến nút kế tiếp trong chuỗi
+
+2. Nhắc lại lý thuyết cấp phát động Malloc, Calloc.
+   
+- khi ta khai báo 1 mảng như sau:
+  
+ví dụ:
+
+uint8_t array[] = {1, 2, 3, 4} 
+
+- đây được gọi là 1 mảng tĩnh nghĩa là mảng này không thay đổi kích thước được.
+  
+- bản chất của mảng là để lưu các giá trị liền kề.
+  
+2.1 cấp phát động 
+
+Như bạn đã biết, mảng là một tập hợp của các phần tử nằm liên tiếp nhau trên bộ nhớ và có cùng kiểu dữ liệu. Khi khai báo mảng, bạn phải chỉ định rõ kích thước tối đa (số lượng phần tử tối đa). Và sau khi khai báo, bạn không thể thay đổi kích thước của mảng – Cấp phát tĩnh.
+
+Đôi khi kích thước của mảng bạn khai báo có thể không đủ sài. Để giải quyết vấn đề này, bạn có thể cấp phát thêm bộ nhớ theo cách thủ công trong thời gian chạy chương trình. Đó cũng chính là khái niệm cấp phát động trong C.
+
+Bảng dưới đây so sánh giúp bạn sự khác biệt giữa cấp phát bộ nhớ động và tĩnh.
+
+Cấp phát bộ nhớ tĩnh	Cấp phát bộ nhớ động
+
+Bộ nhớ được cấp phát trước khi chạy chương trình (trong quá trình biên dịch)	Bộ nhớ được cấp phát trong quá trình chạy chương trình.
+
+Không thể cấp phát hay phân bổ lại bộ nhớ trong khi chạy chương trình	Cho phép quản lý, phân bổ hay giải phóng bộ nhớ trong khi chạy chương trình
+
+Vùng nhớ được cấp phát và tồn tại cho đến khi kết thúc chương trình	Chỉ cấp phát vùng nhớ khi cần sử dụng tới
+
+Chương trình chạy nhanh hơn so với cấp phát động	Chương trình chạy chậm hơn so với cấp phát tĩnh
+
+Tốn nhiều không gian bộ nhớ hơn	Tiết kiệm được không gian bộ nhớ sử dụng
+
+Ưu điểm chính của việc sử dụng cấp phát động là giúp ta tiết kiệm được không gian bộ nhớ mà chương trình sử dụng. Bởi vì chúng ta sẽ chỉ cấp phát khi cần dùng và có thể giải phóng vùng nhớ đó ngay sau khi sử dụng xong.
+
+
+Nhược điểm chính của cấp phát động là bạn phải tự quản lý vùng nhớ mà bạn cấp phát. Nếu bạn cứ cấp phát mà quên giải phóng bộ nhớ thì chương trình của bạn sẽ tiêu thụ hết tài nguyên của máy tính dẫn đến tình trạng tràn bộ nhớ (memory leak).
+
+
+Cấp phát bộ nhớ động trong C
+
+Để cấp phát vùng nhớ động cho biến con trỏ trong ngôn ngữ C, bạn có thể sử dụng hàm malloc() hoặc hàm calloc(). Sử dụng hàm free() để giải phóng bộ nhớ đã cấp phát khi không cần sử dụng, sử dụng realloc() để thay đổi (phân bổ lại) kích thước bộ nhớ đã cấp phát trong khi chạy chương trình.
+
+Sử dụng hàm malloc()
+
+Từ malloc là đại diện cho cụm từ memory allocation (dịch: cấp phát bộ nhớ).
+
+
+Hàm malloc() thực hiện cấp phát bộ nhớ bằng cách chỉ định số byte cần cấp phát. Hàm này trả về con trỏ kiểu void cho phép chúng ta có thể ép kiểu về bất cứ kiểu dữ liệu nào.
+
+Cú pháp của hàm malloc():
+
+ptr = (castType*) malloc(size);
+
+Ví dụ:
+
+ptr = (int*) malloc(100 * sizeof(int));
+
+Ví dụ trên thực hiện cấp phát cho việc lưu trữ 100 số nguyên. Giả sử sizeof int là 4, khi đó lệnh dưới đây thực hiện cấp phát 400 bytes. Khi đó, con trỏ ptr sẽ có giá trị là địa chỉ của byte dữ liệu đầu tiên trong khối bộ nhớ vừa cấp phát.
+
+Trong trường hợp không thể cấp phát bộ nhớ, nó sẽ trả về một con trỏ NULL.
+
+Sử dụng hàm calloc()
+
+Từ calloc đại diện cho cụm từ contiguous allocation (dịch: cấp phát liên tục).
+
+Hàm malloc() khi cấp phát bộ nhớ thì vùng nhớ cấp phát đó không được khởi tạo giá trị ban đầu. Trong khi đó, hàm calloc() thực hiện cấp phát bộ nhớ và khởi tạo tất cả các ô nhớ có giá trị bằng 0.
+
+Hàm calloc() nhận vào 2 tham số là số ô nhớ muốn khởi tạo và kích thước của 1 ô nhớ.
+
+Cú pháp của hàm calloc():
+
+ptr = (castType*)calloc(n, size);
+
+Ví dụ:
+
+ptr = (int*) calloc(100, sizeof(int));
+
+Trong ví dụ trên, hàm calloc() thực hiện cấp phát 100 ô nhớ liên tiếp và mỗi ô nhớ có kích thước là số byte của kiểu int. Hàm này cũng trả về con trỏ chứa giá trị là địa chỉ của byte đầu tiên trong khối bộ nhớ vừa cấp phát.
+
+
+Sử dụng hàm free()
+
+Việc cấp phát bộ nhớ động trong C dù sử dụng malloc() hay calloc() thì chúng cũng đều không thể tự giải phóng bộ nhớ. Bạn cần sử dụng hàm free() để giải phóng vùng nhớ.
+
+Cú pháp:
+
+free(ptr); // ptr là con trỏ
+
+Lệnh này sẽ giải phóng vùng nhớ mà con trỏ ptr đã được cấp phát. Giải phóng ở đây có nghĩa là trả lại vùng nhớ đó cho hệ điều hành và hệ điều hành có thể sử dụng vùng nhớ đó vào việc khác nếu cần.
+
+Nếu bạn không giải phóng nó thì nó sẽ tồn tại cho tới khi chương trình kết thúc. Điều này sẽ rất nguy hiểm nếu chương trình của bạn liên tục cấp phát các vùng nhớ mới và sẽ gây ra hiện tượng tràn bộ nhớ mà mình đã nhắc tới ở trên. Thử code này xem sao (bảo đảm là máy bạn sẽ bị treo và chỉ còn cách ấn nút nguồn thôi, bạn có thể để cấp phát size nhỏ hơn và theo dõi thay đổi qua Task Manager):
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+ 
+int main(){
+
+    for(;;){
+    
+        printf("\nCap phat %d bytes!", 1000000 * sizeof (int));
+	
+        int *ptr = (int*) malloc (1000000 * sizeof (int));
+	
+ 
+    }
+    
+}
+
+Ví dụ sử dụng malloc() và free()
+
+Trong ví dụ dưới đây, chúng ta sẽ sử dụng hàm malloc() để cấp phát động n * sizeof int byte và sử dụng xong sẽ dùng free() để giải phóng.
+
+#include <stdio.h>
+
+// Thư viện này cần để cấp phát bộ nhớ động
+
+#include <stdlib.h>
+
+ 
+int main()
+
+{
+
+    int n, i, *ptr, sum = 0;
+    
+    printf("Nhap so luong phan tu: ");
+    
+    scanf("%d", &n);
+    
+    ptr = (int *)malloc(n * sizeof(int));
+    
+ 
+    // Nếu không thể cấp phát,
+    
+    // hàm malloc sẽ trả về con trỏ NULL
+    
+    if (ptr == NULL)
+    
+    {
+    
+        printf("Co loi! khong the cap phat bo nho.");
+	
+        exit(0);
+	
+    }
+    
+    printf("Nhap cac gia tri: ");
+    
+    for (i = 0; i < n; ++i)
+    
+    {
+    
+        scanf("%d", ptr + i);
+	
+        sum += *(ptr + i);
+	
+    }
+    
+    printf("Tong = %d", sum);
+ 
+    // Giải phóng vùng nhớ cho con trỏ
+    
+    free(ptr);
+    
+    return 0;
+    
+}
+
+Ví dụ sử dụng calloc() và free()
+
+Trong ví dụ này, chúng ta sẽ dùng calloc() để cấp phát n ô nhớ liên tiếp và mỗi ô nhớ có kích thước là sizeof int. Lưu ý là hàm calloc() sẽ chậm hơn malloc() một chút do nó phải thêm bước khởi tạo các ô nhớ có giá trị bằng 0. Do đó, tùy thuộc bạn cần hiệu năng hay cần khởi tạo giá trị ban đầu mà sử dụng hàm cấp phát thích hợp.
+
+#include <stdio.h>
+
+// Thư viện này cần để cấp phát bộ nhớ động
+
+#include <stdlib.h>
+
+ 
+int main()
+
+{
+
+    int n, i, *ptr, sum = 0;
+    
+    printf("Nhap so luong phan tu: ");
+    
+    scanf("%d", &n);
+    
+    ptr = (int *)calloc(n, sizeof(int));
+    
+ 
+    // Nếu không thể cấp phát, 
+    
+    // hàm calloc sẽ trả về con trỏ NULL
+    
+    if (ptr == NULL)
+    
+    {
+    
+        printf("Co loi! khong the cap phat bo nho.");
+	
+        exit(0);
+	
+    }
+    
+    printf("Nhap cac gia tri: ");
+    
+    for (i = 0; i < n; ++i)
+    
+    {
+    
+        scanf("%d", ptr + i);
+	
+        sum += *(ptr + i);
+	
+    }
+    
+    printf("Tong = %d", sum);
+    
+ 
+    // Giải phóng vùng nhớ cho con trỏ
+    
+    free(ptr);
+    
+    return 0;
+}
+
+Sử dụng hàm realloc()
+
+Nếu việc cấp phát bộ nhớ động không đủ hoặc cần nhiều hơn mức đã cấp phát, bạn có thể thay đổi kích thước của bộ nhớ đã được cấp phát trước đó bằng cách sử dụng hàm realloc().
+
+Cú pháp của realloc():
+
+ptr = realloc(ptr, n);
+
+Hàm này thực hiện cấp phát vùng nhớ mới cho con trỏ ptr. Vùng nhớ mới đó sẽ có kích thước mới là n bytes.
+
+Hàm này cũng trả về con trỏ chứa giá trị là địa chỉ của byte đầu tiên trong vùng nhớ mới. Hàm này sẽ cố gắng mở rộng số ô nhớ ra phía sau nếu có thể để giữ nguyên giá trị của con trỏ ban đầu. Trong trường hợp phải đổi sang một vùng nhớ khác, hàm realloc() cũng sẽ mang theo giá trị đã có ở vùng nhớ cũ sang vùng nhớ mới và giải phóng luôn vùng nhớ cũ (đọc thêm tài liệu số 2). Trong trường hợp không thể, nó sẽ trả về con trỏ NULL giống như malloc() và calloc().
+
+Ví dụ sử dụng hàm realloc()
+
+Trong ví dụ dưới đây, ta sẽ sử dụng hàm realloc() để tái phân bổ lại bộ nhớ. Như trong ví dụ dưới đây thì việc cấp phát không phải di chuyển sang vùng nhớ khác mà chỉ mở rộng ra phía sau.
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+int main()
+
+{
+
+    int *ptr, i , n1, n2;
+    
+    printf("Nhap so luong phan tu: ");
+    
+    
+    scanf("%d", &n1);
+    
+    ptr = (int*) malloc(n1 * sizeof(int));
+    
+    printf("Dia chi cua vung nho vua cap phat: %u", ptr);
+    
+    
+    printf("\nNhap lai so luong phan tu: ");
+    
+    scanf("%d", &n2);
+    
+    // phân bổ lại vùng nhớ
+    
+    ptr = (int*) realloc(ptr, n2 * sizeof(int));
+    
+    printf("Dia chi cua vung nho duoc cap phat lai: %u", ptr);
+    
+    // giải phóng
+    
+    free(ptr);
+    
+    return 0;
+    
+}
+
+Kết quả chạy:
+
+
+Nhap so luong phan tu: 2
+
+Dia chi cua vung nho vua cap phat: 1993360
+
+Nhap lai so luong phan tu: 100
+
+Dia chi cua vung nho duoc cap phat lai: 1993360
+
+
+
 
 
 
