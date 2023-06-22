@@ -2893,158 +2893,276 @@ Nhap lai so luong phan tu: 100
 
 Dia chi cua vung nho duoc cap phat lai: 1993360
 
-=================== Bài 11 ======================
+		=================== Bài 11 ======================
                            ======   Stack    =======
+			   
 1. cấu trúc dữ liệu stack. - ngăn xếp.
+   
 - dữ liệu trong stack được sắp xếp theo kiểu "last in first out " có nghĩa là phần cuối cùng được đưa vào stack sẽ được lấy ra đầu tiên. Một stack là 1 cấu trúc dữ liệu trừu tượng, nó cho phép bạn thực hiện hai thao tác chính là đưa phần tử mới vào stack và lấy phần tử trên đầu stack ra.
+  
 Ví dụ.
+
 Nếu ta thêm  các số 1, 2, 3 vào stack theo thứ tự, thì số 3 sẽ nằm trên đầu stack và số 1 sẽ nằm ở đáy. Nếu ta muốn lấy số 3 ra khỏi stack , các phần tử khác sẽ không bị ảnh hưởng , và số 2 sẽ trở thành phần tử đầu tiên trong stack.
+
 - Để thực hiện các thao tác này, ta có thể sử dụng 1 mảng hoặc 1 danh sách liên kết. Thao tác thêm 1 phần tử mới vào stack sẽ được thực hiện bằng cách tăng chỉ số của mảng hoặc thêm nút đầu tiên vào danh sách liên kết. Thoa tác lấy phần tử trên đầu stack ra sẽ được thực hiện bằng cách giảm chỉ số của mảng hoặc loại bỏ nút đầu tiên trong danh sách liên kết.
+  
 
 *giải thích theo cách khác :
+
 Trong khoa học máy tính, một ngăn xếp (còn gọi là bộ xếp chồng, tiếng Anh: Stack) là một cấu trúc dữ liệu trừu tượng hoạt động theo nguyên lý “vào sau ra trước” (Last In First Out (LIFO). Tức là, phần tử cuối cùng được chèn vào ngăn xếp sẽ là phần tử đầu tiên được lấy ra khỏi ngăn xếp.
 
 Một ví dụ trực quan, bạn có một chồng sách và bạn để nó trong một cái hộp như hình phía dưới. Giả sử hộp này vừa khít các cuốn sách. Khi đó, bạn có các thao tác:
 
 Thêm một cuốn sách vào hộp(push của stack)
+
 Lấy một cuốn sách khỏi hộp, bạn chỉ lấy được thằng trên cùng(pop của stack)
 
  
 
 Cấu trúc dữ liệu ngăn xếp bị giới hạn theo cách như trên. Như vậy, việc thao tác với ngăn xếp của chúng ta chỉ bao gồm các hành động sau:
 
+
 Push: Thêm một phần tử vào đỉnh của ngăn xếp, số phần tử của ngăn xếp tăng lên 1.
+
 Pop: Xóa bỏ phần tử đầu tiên ở đỉnh của ngăn xếp, số phần tử của ngăn xếp giảm đi 1.
+
 Top: Lấy giá trị của phần tử đầu tiên ở đỉnh của ngăn xếp, số phần tử của ngăn xếp không thay đổi.
+
 IsEmpty: Kiểm tra ngăn xếp trống hay không. Ngăn xếp trống là ngăn xếp không có phần tử nào.
+
 IsFull: Kiểm tra ngăn xếp đã đầy hay chưa. Thao tác này không phải lúc nào cũng có.
+
 Size: Lấy số lượng phần tử stack đang có.
 
+
 2. 1 số hàm trong cấu trúc stack.
+3. 
 push: Adds an element to the top of the stack.
+
 - thêm 1 phần tử vào đầu của stack.
+  
 pop: Removes the topmost element from the stack.
+
+
 - xóa phần tử trên cùng của stack
+  
 isEmpty: Checks whether the stack is empty.
+
 - kiểm tra xem stack có trống không
+ 
 isFull: Checks whether the stack is full.
+
 - kiểm tra xem liệu stack đã đầy chưa
+  
 top: Displays the topmost element of the stack.
+
 - hiện thị phần tử trên cùng của stack.
+  
 pop() to remove an element from the stack
+
 - xóa 1 thành phần của stack.
+  
 size() returns the size of stack.
+
 - trả về giá trị kích thước của stack.
+- 
 3. chi tiết từng hàm cài đặt ngăn xếp theo mảng.
+  
 a, hàm isEmpty(): kiểm tra xem ngăn xếp có trống hay không tức là ngăn xếp có phần tử nào không.
+
 - Cú pháp :
 
  bool isEmpty()
+ 
 {
     if(on_top== -1)
+    
     {
+    
         return true;
+	
     }
+    
     else
+    
     return false;
+    
 }
 
-- hàm này có nhiệm vụ kiểm tra xem ngăn xếp stack đã có phần tử nào chưa nếu chưa trả về "true" nếu có trả về "false" 
+- hàm này có nhiệm vụ kiểm tra xem ngăn xếp stack đã có phần tử nào chưa nếu chưa trả về "true" nếu có trả về "false"
+
+  
 + cách làm : để kiểm tra xem stack đã có phần tử nào chưa ta đi kiểm tra xem phần tử đầu tiên được nhập vào stack có giá trị hay không
+  
 =>  tức là đi kiểm tra phần tử đầu tiên trong ngăn xếp stack ở đây được khai báo là "on_top" có = -1 hay không nếu có trả về true  nếu không trả về false;
 
+
 b, hàm IsFull()
+
 - hàm này có chức năng kiểm tra xem ngăn xếp đã đầy hay chưa
+  
 - Cú pháp :
 
 bool IsFull()
+
 {
+
     if(on_top== SIZE -1)
+    
     {
+    
         return true;
+	
     }
+    
     else
+    
     return false;
+    
 }
+
 - cách làm :
+  
 + để kiểm tra xem ngăn xếp đã đầy hay chưa ta đi kiểm tra xem số phần tử trong ngăn xếp có bằng hay lớn hơn kích thước của ngăn xếp hay không
+  
 => tức là đi kiểm  tra phần tử cao nhất trong ngăn xếp "on_top" có bằng với kích thước ngăn xếp -1 hay không vì ta đếm từ vị trí số 0.
 
 * chú ý : ở đây ta lại bắt gặp 1 biến on_top nữa nhưng ta cần làm rõ 2 biến "on_top" ở đây là hoàn toàn khác nhau :
+  
 * đầu tiên biến " on_top" ở hàm IsEmpty() đại biểu cho biến đầu tiên được nhập vào trong ngăn xếp.
+  
 * thứ 2 biến "on_top" ở trong hàm IsFull() đại biểu cho biến cao nhất tức là biến cuối cùng được nhập vào trong ngăn xếp .
+  
 => 2 biến này hoàn toàn khác nhau cần làm rõ .
 
 c, hàm push() 
+
 - hàm này dùng để thêm 1 phần tử vào ngăn xếp.
+  
 - để thêm 1 phần tử vào ngăn xếp thì ta phải đi xem xem ngăn xếp đó đã đầy hay chưa nếu chưa ta mới có thể thêm phần tử vào.
+  
 - theo nguyên tắc của kiểu cấu trúc stack là sẽ thêm lần lượt các phần tử vào trong ngăn xếp vậy nếu muốn thêm phần tử vào trong ngăn xếp chỉ có thể thêm vào phần tử trên cùng của ngăn xếp tức là thêm vào vị trí của "on_top" trong ngăn xếp.
+  
 => vậy thì vị trí index cũ sẽ phải tăng lên 1 đơn vị để đến vị trí top cao nhất và thêm phần tử muốn thêm vào ở vị trí đó.
 
 - cú pháp :
+  
  void push(uint8_t stack[], uint8_t value)
+ 
 {
+
     if(IsFull()== true)
+    
     {
+    
         printf("stack is full ! \n");
+	
     }
+    
     else
+    
     {
+    
         
         stack[++on_top] = value;
+	
     }
+    
 }
+
 
 * bổ xung kiến thức :
+  
 --i và i-- khác gì nhau 
+
 + "--i" trong trường hợp này là i sẽ trừ trước sau đó mới được gán vào giá trị của biến
+  
 - ví dụ:
+  
 int  i = 5;
+
 int c = --i;
+
 - trong ví dụ này giá trị của biến c được gán bằng "--i " tức là i sẽ được trừ trước sau đó mới gán cho c và c có giá trị là 4
+  
 +"i--" trong trường hợp này thì i sẽ được gán vào giá trị biến trước sau đó mới trừ.
+
 - ví dụ:
+  
 int  i = 5;
+
 int c = i--;
+
 - trong ví dụ này giá trị của biến c được gán bằng "i-- " tức là i sẽ được gán cho c trước và sau đó mới trừ giá trị của i lúc này c có trá trị  = 5;
+  
 
 d, hàm pop() to remove an element from the stack
-- hàm này dùng để xóa phần tử cuối cùng trong ngăn xếp tức là xóa vị trí index cao nhất 
+
+- hàm này dùng để xóa phần tử cuối cùng trong ngăn xếp tức là xóa vị trí index cao nhất
+  
 =>cách làm là ta sẽ đi xóa phần tử on_top của stack và trả lại ở vị trí on_top--;
+
 - cú pháp :
+  
 void pop(uint8_t stack[], uint8_t value)
+
 {
+
     if(isEmpty() == true )
+    
     {
+    
         printf("stack is Empty !\n");
+	
     }
+    
     else 
+    
     {
+
     stack[on_top--] = '\0' ;    // băng NULL
+    
     }
+    
 }
+
 e,
+
 //top() Returns the top element of the stack.
+
 // hàm này có nhiệm vụ trả về phần tử cao nhất của ngăn xếp.
+
 uint64_t top (const uint8_t stack[], uint8_t value)
+
 {
+
     return stack[on_top];
+    
 }
 
 
 
 
 f,size() returns the size of stack.
+
 // hàm này trả về kích thước của ngăn xếp
 
 uint8_t size()
+
 {
+
     return on_top + 1;
+    
 }
+
 => chương trình:
+
 #include <stdio.h>
+
 #include <stdint.h>
+
 #include <stdbool.h>
+
 
 #define SIZE 5 
 
@@ -3052,101 +3170,169 @@ int8_t on_top = -1;
 
 
 //isEmpty() returns true if stack is empty else false. /  kiểm tra xem là ngăn xếp có trống không
+
 // cách để kiểm tra là kiểm tra xem phần tử ở đáy của ngăn xếp có giá trị hay không tức là "on_top" đã có giá trị hay chưa
+
 //Nếu on_top = -1 tức là chưa có giá trị còn nếu khác -1  tức là có giá trị rồi.
+
 // với "index" được khai báo ở trên là đại diện cho biến đầu tiên được lưu vào trong ngăn xếp  stack
+
 // Nó sẽ khác với biến "on_top" ở trong hàm Isfull() ở đây nó đại biểu cho biên trên đầu hay phần tử cuối cùng được thêm vào ngăn xếp 
+
 //phải phân biệt rõ 2 biến này không sẽ bị rối.
 
+
 bool isEmpty()
+
 {
+
     if(on_top == -1)
+    
     {
+    
         return true;
+	
     }
+    
     else
+    
     return false;
+    
 }
 
 
 //IsFull: Kiểm tra ngăn xếp đã đầy hay chưa. Thao tác này không phải lúc nào cũng có.
+
 // để kiểm tra ngăn xếp đã đầy hay chưa ta sẽ kiểm tra xem số phần tử trong ngăn xếp có bằng hoặc lớn hơn kích thước của ngăn xếp hay không
+
 // hay tức là ta sẽ đi kiểm tra xem phần tử trên cùng có = kích thước của ngăn xếp -1 không vì ta đếm từ vị trí số 0.
 
+
 bool IsFull()
+
 {
+  
     if(on_top == SIZE -1)
+    
     {
+    
         return true;
+	
     }
+    
     else
+    
     return false;
 }
 
 
 //push() to insert an element into the stack / hàm này dùng để thêm 1 phần tử vào vị trí trên cùng của stack.
+
 // dùng để thêm 1 phần tử vào trong ngăn xếp muốn thêm 1 phần tử vào trong ngăn xếp ta phải xem xem stack đã đầy hay chưa bằng cách gọi hàm IsFull()
+
 // sau khi kiểm tra là ngăn xếp chưa đầy thì 1 phần tử mới sẽ được thêm vào vị trí cao nhất của ngăn xếp vì vậy 
 
 void push(uint8_t stack[], uint8_t value)
+
 {
+
     if(IsFull()== true)
+    
     {
+    
         printf("stack is full ! \n");
+	
     }
+    
     else
+    
     {
+    
         stack[++on_top] = value;
+	
     }
 }
+
 
 
 
 
 //pop() to remove an element from the stack
+
 // hàm này dùng để xóa phần tử cuối cùng trong ngăn xếp tức là xóa vị trí on_top cao nhất 
+
 // cách làm là ta sẽ đi xóa phần tử on_top của stack và trả lại ở vị trí top--;
 
+
 void pop(uint8_t stack[], uint8_t value)
+
 {
+
     if(isEmpty() == true )
+    
     {
+    
         printf("stack is Empty !\n");
+	
     }
     else 
+    
     {
+    
     stack[on_top--] = '\0' ;    // băng NULL
+  
     }
+    
 }
 
 
 //top() Returns the top element of the stack.
+
 // hàm này có nhiệm vụ trả về phần tử cao nhất của ngăn xếp.
+
 uint64_t top (const uint8_t stack[], uint8_t value)
+
 {
+ 
     return stack[on_top];
+    
 }
 
 
 
 
 //size() returns the size of stack.
+
 // hàm này trả về kích thước của ngăn xếp
 
+
 uint8_t size()
+
 {
+
     return on_top + 1;
+    
 }
 
+
 int main(int argc, char const *argv[])
+
 {
+
     uint8_t stack[SIZE];
+    
     push(stack,8);
+    
     push(stack,1);
+    
     push(stack,2);
+    
     push(stack,3);
+    
     return 0;
+    
 }
+
 
 
 
