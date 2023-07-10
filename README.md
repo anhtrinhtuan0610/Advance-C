@@ -3958,6 +3958,122 @@ int main() {
     
 }
 
+================== Buổi 14: class =================
+
+====================== C++ ==========================
+
+
+1.	Chương trịnh C++ đầu tiên làm quen với Cin và Cout.
+1.1	Ví dụ 1:
+#include <iostream>
+#include <stdlib.h>
+
+
+using namespace std;
+
+int main(int argc, char const *argv[])
+{
+    int i = 0;
+    cout << "vui long nhap vao i = ......\n";
+    cin >> i;
+    cout << i;
+    return 0;
+}
++giải thích :
+-	ở đây ta bắt gặp 1 cách khai báo thư viện khá lạ so với C, với tất cả các thư viện của C++ ta không cần phải khai báo đuôi.h như khai báo thư viện của bên C.
+-	tức là khi khai báo thư viện cho C++ thì chỉ cần khai báo tên thư viện và không cần khai báo thêm .h 
+-	Ví dụ:
+
+#include <iostream>
+
+-	ở dây ta bắt gặp thêm 2 câu lệnh đó là 
++  “ Cin >> i “ : câu lệnh này dung để nhập giá trị của phần tử muốn nhập giá trị trong trường hợp này là “ i” / nó giống với câu lệnh scanf trong C nhưng nó tối ưu hơn vì nó được sử dụng cho tất cả các kiểu dữ liệu.
++ “ Cout << I “ : đây là câu lệnh dung để in ra màn hình giá trị của I / giống với lệnh printf trong C.
+
+2.	cấu trúc class trong C++.
+-	Lớp ( Class) trong ngôn ngữ lập trịnh C++ là 1 đơn vị quan trọng để tổ chức và mô hình hóa dữ liệu và hành vi. Nó cho phép đóng gói các thuộc tính (biến thành viên) và phương thức (hàm thành viên) liên quan vào 1 đối tượng duy nhất.Dưới đây là một số khái niệm cơ bản về lớp trong C++.
+1.	Định nghĩa Class:
+-	Bạn có thể định nghĩa lớp bằng từ khóa ‘class’ và sau đó đặt tên lớp.
+Ví dụ:
+Class SinhVien{
+                // các thành viên và phương thức của lớp
+     };
+2.	Thuộc tính : thuộc tính của 1 lớp là các biến thành viên , được khai báo bên trong phần công khai (public) hoặc phần riêng tư (private) của lớp.
+	Hay dễ hiểu hơn là nó sẽ là các thông tin ta khai báo trong class phần public và private . Nó là các biến và hàm được khai báo bên trong Class.
+-	Ví dụ:
+Class SinhVien{
+          Public:
+                      String name;
+                       Int      tuoi;
+                       Int       lop;
+                       Void tuoi();
+          Private:
+                           String family;
+};
+
+
+
+-	Thuộc tính ở đây là bao gồm các biến, hàm được khai báo trong public và  private 
++ Các biến thì được gọi là property (tài sản), ví dụ : string name, int tuoi, ….
++ Các hàm thì được gọi là method (phương thức) , Ví dụ void tuoi(),…
+3.Phương thức : phương thức của 1 lớp là các hàm thành viên được thực hiện bên trong lớp. Chúng có thể được gọi để thao tác và tương tác với dữ liệu của lớp.
+-Ví dụ:
+         Class SinhVien{
+                  Public:
+                              Void inten(string name)
+                                                {
+	Cout << name;
+                                                  };
+                                 Void nhapten(string name)
+                                                {
+	Cin >> name;
+                                                  };
+                   Private:
+                                  Void xoaten()
+                                                      {
+                                                         String name;
+	};
+-	ở đây phương thức là các hàm nhapten(), inten(), xoaten(),….
+4.Đối tượng: đối tượng là 1 thể hiện cụ thể của lớp. Khi bạn đã định nghĩa 1 lớp, bạn có thể tạo ra nhiều đối tượng từ lớp làm việc đó để làm việc với dữ liệu và thực hiện các hoạt động 
+Để tạo đối tượng từ 1 lớp , bạn khai báo 1 biến với kiểu dữ liệu là tên lớp. 
+-Ví dụ:
+      SinhVien anh;                   // tao doi tuong anh tu lop SinhVien
+Sau khi tạo đối tượng “anh” bạn có thể truy cập và sử dụng các thuộc tính và phương thức của đối tượng bằng cách sử dụng toán tử ’.’ (dot operator) . ví dụ để truy cập thuộc tính ‘name’ của đối tương ‘anh’ ta sử dụng:
+           Anh.name = “trinh tuan anh”;
+Tương tự với các thuộc tính khác.
+
+Bằng cách tạo ra nhiều đối tượng từ cùng 1 lớp , bạn có thể làm việc và quản lý dữ liệu riêng của từng đối tượng 1 cách độc lập  Điều này cho phép bạn mô hình hóa và tương tác với nhiều đối tượng khác nhau trong chương trịnh của mình.
+5. quyền truy cập: có 3 mức độ truy cập cho thành viên và phương thức lớp.
++ công khai (public)
++ riêng tư (private)
++ bảo mật (protected)
+-	quyền truy cập (access specifier) cho phép bạn kiểm soát việc truy cập vào các thành phần của 1 lớp 
++ Public: khi 1 thành phần (biến thành viên hoặc phương thức) đươc khai báo công khai , nghĩa là nó có thể được truy cập ở bất cứ đâu, trong hoặc ngoài lớp .Các thành phần công khai thường được sử dụng để diễn tả các tính năng chung của đối tượng .
+	nghĩa là khi 1 biến hoặc 1 hàm được khai báo trong public ta có thể truy cập nó ở cả trong và ngoài của class.
+-Ví dụ:
+Class SinhVien{
+Public:
+String name;           property công khai
+Int age;
+Void tinhtien(){}        method công khai
+};
+
+SinhVien anh;
+Anh.name = “trinh tuan anh”;
+Anh.age = 15;                          // gán giá trị cho biến thành viên công khai.
+
+	Tổng kết lại tức là các biến được khai báo trong public ta có thể truy cập và thay đổi giá trị ở trong và ngoài class.
++ Private: khi 1 thành phần được khai báo riêng tư , nghĩa là nó chỉ có thể truy cập từ bên trong cùng lớp. Các thành phần riêng tư thường được sử dụng để đảm bảo và tính riêng tư của dữ liệu.
+-Ví dụ:
+Class SinhVien{
+Private:
+String name;
+Public:
+Void changename(string new_name)
+{
+New_name = name;
+}
+};
 
 
 
