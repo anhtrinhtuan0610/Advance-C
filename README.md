@@ -4178,6 +4178,294 @@ New_name = name;
 
 };
 
+-	So sánh với kiểu dữ liệu “struck” thì trong struck chỉ được khai báo các biến và các biến trong đó không được khởi tạo giá trị mặc định, còn đối với class thì nó có bao gồm cả biến và hàm và có thể khỏi tạo giá trị mặc định cho các biến đó.	
+
+•	Cách để lập trịnh trong class:
+
+-	Ta có cấu trúc 1 class như sau:
+
+Class SinhVien{
+
+Public:
+
+Member1;
+
+Member2;
+
+….
+
+Private:
+
+Member1;
+
+Member2;
+
+….
+
+];
+
+-	Ta biết rằng trong class sẽ bao gồm các member là cả biến và hàm nhưng khi ta sử dụng class ta sẽ chỉ viết chương trịnh theo kiểu giống như những file header (file thư viện) nghĩa là sao nghĩa là trong class ta chỉ viết các function call mà thồi còn các function ta sẽ phát triển bên ngoài class .
+
+Ví dụ:
+
+#include <iostream>
+
+
+using namespace std;
+
+
+
+class SinhVien{
+
+    public:                                         // public là phạm vy truy cập
+    
+    int tuoi;                                      // các biến được khai báo trong class được gọi là property
+    
+    int lop;
+    
+    void hien_thi()                                // các fuction trong class được gọi là method
+    
+    {
+    
+	cout << "Hello girls";
+    
+    }
+
+};
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    SinhVien anh;                                    // tạo 1 biến mang tên anh có kiểu class "anh" ở đây được gọi là object
+    
+    anh.tuoi = 18;                                   // khởi tạo giá trị 
+    
+    anh.lop = 12;
+
+
+
+    cout << anh.tuoi <<endl ;
+    
+    cout << anh.lop << endl;
+    
+    anh.hien_thi();
+    
+    return 0;
+
+}
+
+-	ở ví dụ trên ta thấy trong class ở phạm vi truy cập public ta có 1 function
+mang tên hiện thị nhưng quy tắc viết class là sẽ không trực tiếp viết hàm trong class mà chỉ khai báo các member trong class mà thồi lên ta sẽ sửa lại như sau:
+
+
+#include <iostream>
+
+
+using namespace std;
+
+
+class SinhVien{
+
+    public:
+    
+    void setthongtin();
+    
+    void hien_thi();
+
+    
+    private:
+    
+    string name;
+    
+    int tuoi;
+    
+    int lop;
+
+};
+
+
+void SinhVien::setthongtin(){
+
+    cout << "Please enter your name : .....";
+    
+    cin >> name;
+    
+    cout << "Please enter your age: ...";
+    
+    cin >> tuoi;
+    
+    cout << "please enter your class: ...";
+    
+    cin >> lop;
+
+}
+
+
+void SinhVien::hien_thi(){
+
+    cout << "TEN: " << name <<endl;
+    
+    cout << "TUOI: " << tuoi <<endl;
+    
+    cout << "LOP: " << lop<< endl;
+
+}
+    
+
+    
+
+
+int main(int argc, char const *argv[])
+
+{
+
+    SinhVien anh;
+    
+    anh.setthongtin();
+    
+    anh.hien_thi();
+    
+    return 0;
+
+}
+
+-	ở đây ta sẽ nhắc lại 1 chút về phạm vi truy cập:
+
++public: với public các object tạo ra có thể truy cập được 
+
++private: các object tạo ra không truy cập được
+
+
+3.	kế thừa public trong class:
+
+-	kế thừa public :
+
+-	hãy tưởng tượng ta có 2 lớp : lớp cha và lớp con .Khi lớp con kế thừa public từ lớp cha nghĩa là lớp con có thể sử dụng mọi thành phần công cộng (public) mà lớp cha đang có 
+
+hãy tưởng tượng rằng lớp cha là 1 hình mẫu lý tưởng cho một đối tượng nào đó. Nó đã định nghĩa các thuộc tính và phương thức công cộng mà mọi người có thể nhìn 
+thấy và sử dụng. Khi lớp con kế thừa public từ lớp cha nó như việc tạo ra 1 phiên bản con của lớp cha . Phiên bản con này sẽ có tất cả những thuộc tính và phương thức công cộng của lớp cha 
+
+Ví dụ nếu lớp cha có 1 phương thức công cộng là hat(), thì lớp con kế thừa phương thức công cộng public từ lớp cha . Lớp con cũng có phương thức công cộng đó là hat(),. Điều này có nghĩa là có thẻ gọi phương thuức hát trực tiếp từ đối tượng con.
+Kế thừa public giúp tái sử dụng mã nguồn 1 cách thông minh. Nếu có nhiều lớp mà chúng ta có tất cả thuộc tính và phương thức giống nhau,chúng ta chỉ cần tạo 1 lớp cha chứa các thành phần đó , và sau đó cho các lớp khác kế thừa public từ lớp cha. Điều này giúp tiết kiệm thời gian và công sức trong việc định nghĩa lại các thành phần giống nhau nhiều lần.
+
+
+	khi mà sử dụng kế thừa private thì không thể truy cập được các member trong class cha nhưng kê thừa public thì có
+
+	khi phạm vi truy cập là private thì chỉ có class đó mới truy cập vào được.
+
+-	Ví dụ:
+
+#include <iostream>
+
+using namespace std;
+
+class DoiTuong{
+
+    public:
+    
+    string name;
+    
+    int age;
+    
+    int grape;
+    
+    void NhapThongTin(string name, int age, int grape);
+    
+    void hienthi();
+
+    
+    private:
+    
+
+};
+
+
+void DoiTuong::NhapThongTin(string name, int age, int grape){
+    
+    cout <<"This is Class DoiTuong!\n";                                    
+
+    DoiTuong::name = name;                              // vì trong chương trình có input parameter tên là name lên cần xác định rõ xem name ở đây là gì
+    
+    DoiTuong::age = age;
+    
+    DoiTuong::grape = grape;
+
+}
+
+void DoiTuong::hienthi(){
+
+    cout << "This is Class DoiTuong!\n";
+    
+    cout << name << endl;
+    
+    cout << age << endl;
+    
+    cout << grape << endl;
+
+
+}
+
+class SinhVien : public DoiTuong{
+
+    public:
+    
+    int mssv;
+    
+    void NhapThongTin(string name, int age, int grape, int mssv);
+    
+    void hienthi();
+
+    
+    private:
+
+
+};
+
+
+void SinhVien::NhapThongTin(string name, int age, int grape, int mssv){
+
+    cout <<"This is Class SinhVien!\n";                                    
+    
+    SinhVien::name = name;                              // vì trong chương trình có input parameter tên là name lên cần xác định rõ xem name ở đây là gì
+    
+    SinhVien::age = age;
+    
+    SinhVien::grape = grape;
+    
+    SinhVien::mssv = mssv;
+
+
+}
+
+void SinhVien::hienthi(){
+
+    cout << "This is Class SinhVien!\n";
+    
+    cout << name << endl;
+    
+    cout << age << endl;
+    
+    cout << grape << endl;
+    
+    cout << mssv << endl;
+
+}
+
+int main(int argc, char const *argv[])
+
+{
+
+    SinhVien sv;
+    
+    sv.NhapThongTin("anh",18,12,1102);
+    
+    sv.hienthi();
+    
+    return 0;
+}
+
 
 
 
