@@ -4506,6 +4506,26 @@ class SinhVien : public DoiTuong{
 
 	Tất cả các biến bình thường khi được khai báo sẽ gồm các địa chỉ khác nhau nhưng khi ta khai báo biến với từ khóa static thì biến đó dù được khai báo ở 2 object khác nhau nhưng vẫn sẽ trỏ chung tới 1 địa chỉ.
 
+                   		====================B15: Hướng Đối Tượng==================
+
+1.	OOP LÀ GÌ?
+
+-	Lập trịnh hướng đối tượng (OOP- Object- Oriented- Programming)
+
+-	OOP giúp tổ chức mã nguồn 1 các cấu trúc linh hoạt hơn bằng cách tạo ra các đối tượng , các class ,và các quan hệ giữa chúng 
+
+-	4 đặc tính chính của lập trịnh hướng đối tượng:
+
++ Trừu tượng (Abstraction) : Trừu tượng là quá trình chuyển đổi các đối tượng và hành vi của chúng thành các lớp và phương thức. Nó cho phép chúng ta tạo ra các mô hình và khái niệm trừu tượng để giảm bớt sợ phức tạp của vấn đề cần giải quyết và tập trung vào những thông tin quan trọng và cần thiết nhất .
+
++ Kế thừa (Inheritance) : kế thừa là quá trình cho phép 1 lớp con dẫn xuất kế thừa các thành phần (thuộc tính, phương thức) từ 1 lớp cha (cơ sở) . Điều này giúp tiết kiệm thời gian và công sức bằng cách sử dụng lại các thành phần đã được xây dựng trong lớp cha , đồng thời cho phép mở rộng và thay đổi trong lớp con.
+
++ Đa hình (Polymorphism) : đa hình cho phép sử dụng 1 tên (phương thức) để thực hiện nhiều hành động khác nhau dựa trên kiểu dữ liệu hoặc tham số của đối tượng . Điều này giúp mã nguồn chở lên linh hoạt , tiện lợi và dễ dàng mở rộng với việc thêm lớp con mới .
+
++ Đóng gói (Encapsulation) : đóng gói là quá trình kết hợp các thuộc tính và phương thức liên quan vào 1 đối tượng duy nhất , và che dấu ẩn thông tin chi tiết về cách nội bộ đối tượng hoạt động . Điều này đi kèm với việc cung cấp các phương thức công khai để truy cập và thao tác dữ liệu . Đóng gói giúp bảo vệ dữ liệu và ẩn thông tin bên trong đối tượng , ngăn ngừa truy cập trực tiếp không mong muốn và làm cho mã nguồn an toàn và dễ bảo trì hơn.
+    
+
+
 
 
 
