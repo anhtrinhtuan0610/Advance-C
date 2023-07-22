@@ -4466,6 +4466,46 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
+4.	Static trong class.
+   
+-	Khi  ta khai báo 1 class thì lên nhớ rằng class đó chưa được khai báo trên bộ nhớ RAM, mà chỉ khi ta tạo các object thì mới được lưu trên thanh RAM.
+
+-	Khi ta tạo các class thì bản chất nó cũng giống như các kiểu dữ liệu mà thôi
+
+-	Khi ta khai báo 1 thuộc tính (property) hay 1 phương thức (method) với từ khóa static thì có nghĩa rằng ta đã cấp phát cho thuộc tính hoặc phương thức 1 vùng nhớ và nó sẽ tồn tại trong suốt chương trịnh.
+
+-	Và lên nhớ rằng khi khai báo 1 thuộc tính với từ khóa static thì phỉa khởi tạo nó bằng class chứ không phải bằng object như bình thường(quy tắc là vậy).
+
+
+-	Ví dụ:
+
+Để khai báo 1 thuộc tính với từ khóa static trong class ta khai báo giống với khai báo 1 biến static thông thường:
+
+Static int mssv;
+
+class SinhVien : public DoiTuong{
+
+    public:
+    
+    int mssv;                                                
+    
+    void NhapThongTin(string name, int age, int grape, int mssv);
+    
+    void hienthi();
+    
+    static int adderss;                                                   // tao 1 property voi static
+
+    private:
+
+    
+	   Để khỏi tạo biến static trong class ta làm như sau:
+           
+	    int SinhVien::adderss;
+
+
+
+	Tất cả các biến bình thường khi được khai báo sẽ gồm các địa chỉ khác nhau nhưng khi ta khai báo biến với từ khóa static thì biến đó dù được khai báo ở 2 object khác nhau nhưng vẫn sẽ trỏ chung tới 1 địa chỉ.
+
 
 
 
