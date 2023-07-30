@@ -4683,6 +4683,33 @@ Truy suất một giá trị thông qua key;
 Xóa một cặp key-value khỏi map;
 
 
+=====================================B18:thread=====================================
+Trong ngôn ngữ lập trình C++, thread là một luồng độc lập của quá trình thực thi. Nó cho phép chương trình chạy nhiều tác vụ đồng thời và tận dụng được tài nguyên hệ thống hiệu quả hơn.
+
+Để sử dụng thread trong C++, bạn cần bao gồm thư viện . Dưới đây là một ví dụ đơn giản về việc sử dụng thread trong C++:
+
+cpp
+#include <iostream>
+#include <thread>
+
+// Hàm thực thi của thread
+void threadFunction() {
+    std::cout << "Hello from thread!" << std::endl;
+}
+
+int main() {
+    // Tạo một thread mới và gọi hàm threadFunction
+    std::thread t(threadFunction);
+
+    // Đợi thread hoàn thành
+    t.join();
+
+    std::cout << "Back to main thread!" << std::endl;
+
+    return 0;
+}
+
+
 
 
 
