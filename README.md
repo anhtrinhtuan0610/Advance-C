@@ -4523,7 +4523,159 @@ class SinhVien : public DoiTuong{
 + Đa hình (Polymorphism) : đa hình cho phép sử dụng 1 tên (phương thức) để thực hiện nhiều hành động khác nhau dựa trên kiểu dữ liệu hoặc tham số của đối tượng . Điều này giúp mã nguồn chở lên linh hoạt , tiện lợi và dễ dàng mở rộng với việc thêm lớp con mới .
 
 + Đóng gói (Encapsulation) : đóng gói là quá trình kết hợp các thuộc tính và phương thức liên quan vào 1 đối tượng duy nhất , và che dấu ẩn thông tin chi tiết về cách nội bộ đối tượng hoạt động . Điều này đi kèm với việc cung cấp các phương thức công khai để truy cập và thao tác dữ liệu . Đóng gói giúp bảo vệ dữ liệu và ẩn thông tin bên trong đối tượng , ngăn ngừa truy cập trực tiếp không mong muốn và làm cho mã nguồn an toàn và dễ bảo trì hơn.
+    2.CÁC TÍNH CHẤT CỦA OOP
+2.1.TÍNH KẾ THỪA(Inheritance)
+Đặc tính này cho phép xây dựng một lớp mới có thể có sẵn các đặc tính mà các lớp khác đã có thông qua kế thừa.
+Điều này cho phép các lớp chia sẻ hay mở rộng các đặc tính sẵn có mà không phải tiến hành định nghĩa lại
+2.1.1.XÂY DỰNG KẾ THỪA
+    class <tenClass2>:<phạm vi kế thừa> <tenClass1>
+    {
+    //Nội dung lớp dẫn xuất
+    };
+Khi tenClass1 để phạm vi truy cập của property là private thì tenClass2 không kế thừa được
+
+vidu:
+
+        class tenClass1{
+            public: method();
+                    property
+        };
+        void tenClass1 :: method(){
+            
+        };
     
+
+    //tenclass2 kế thừa toàn bộ property và method của tenClass1
+
+        class tenClass2 : public tenClass1{
+            //định nghĩa mới của class con
+        };
+        void tenClass2 :: method(){
+            ghi đè định nghĩa mới dựa trên class cha
+        }
+2.1.2. PHẠM VI KẾ THỪA (Acess mode)
+Public: Khi đó phạm vi truy cập(acess modifier) của class con sẽ giống của class cha.
+
+Private: khi đó tất cả các property và method của class cha sẽ có phạm vi truy cập( acess modifier) là private ở class con, khi đó các đối tượng (object) sẽ không truy cập được vào các thông tin(property và method) của class cha mà class con đã kế thừa thay và chỉ truy cập được vào các thông tin mà class con đã định nghĩa.
+
+protected: khi đó tất cả thông tin( property và method) của class cha khi để phạm vi truy cập( acess modifier) là pubic thì class con sẽ là protected.
+
+vidu:
+
+    #include <iostream>
+    #include <string>
+
+    using namespace std;
+    class DoiTuong{
+        public:
+            string ten;
+        
+            void NhapThongTin(string ten);
+            void HienThi();
+    };
+
+        void DoiTuong :: NhapThongTin(string ten, int tuoi, int lop){
+            DoiTuong :: ten = ten;
+        }
+
+        void  DoiTuong ::HienThi(){
+            cout << "day la class DoiTuong:\n";
+            cout <<"ten: " <<ten<<endl;
+        }
+
+    //class SinhVien kế thừa class DoiTuong
+    class SinhVien :public DoiTuong{
+            
+    };
+
+    int main(int argc, char const *argv[])
+    {
+        SinhVien sv1;
+
+        sv1.NhapThongTin("Hoang", 17, 11);
+        sv1.HienThi();
+        return 0;
+    }
+GHI ĐÈ (overridding)
+Khi class con muốn thêm property và sử dụng lại method của class cha. khi đó class con định nghĩa lại method khi cần thêm các property;
+
+2.2. TÍNH ĐA HÌNH(polymorphism)
+các method trong class sẽ phân biệt dựa vào các input parameter.
+2.3.TEMPLATE
+Template (khuôn mẫu) là một từ khóa trong C++, và là một kiểu dữ liệu trừu tượng tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
+Template trong C++ có 2 loại đó là function template & class template.
+Template giúp người lập trình định nghĩa tổng quát cho hàm và lớp thay vì phải nạp chồng (overloading) cho từng hàm hay phương thức với những kiểu dữ liệu khác nhau.
+2.4. TÍNH TRỪU TƯỢNG(Abstraction)
+trong lập trình hướng đối tượng là một khả năng mà chương trình có thể bỏ qua sự phức tạp bằng cách tập trung vào cốt lõi của thông tin cần xử lý.
+Điều đó có nghĩa, bạn có thể xử lý một đối tượng bằng cách gọi tên một phương thức và thu về kết quả xử lý, mà không cần biết làm cách nào đối tượng đó được các thao tác trong class.
+Ví dụ đơn giản, bạn có thể nấu cơm bằng nồi cơm điện bằng cách rất đơn giản là ấn công tắc nấu, mà không cần biết là bên trong cái nồi cơm điện đó đã làm thế nào mà gạo có thể nấu thành cơm
+2.5.TÍNH ĐÓNG GÓI(Encapsulation)
+Khi khai báo property thì phải khai báo ở phạm vi truy cập(acess modifier) là private hoặc protected không được phép khai báo ở public, phòng trường hợp người dùng truy cập trực tiếp và thay đổi giá trị dẫn đến sai chương trình.
+BÀI16
+1.namespace
+Định nghĩa vùng nhớ, mỗi namespace sẽ định nghĩa vùng nhớ riêng biệt hay con gọi thư viện riêng, cho phép đặt tên hai biến, class, mảng... trùng tên với nhau trong 2 thư viện khác nhau.
+
+using namspace: gọi một thư viện được khai báo trước đó
+
+2.virtual fuction
+Chỉ dùng trong class
+
+Còn được gọi là hàm ảo, khi các phương thức của classs cha dùng virtual thì class con kế thừa sẽ load lại phương thức và hiển thị phương thức đã được định nghĩa và ghi đè
+
+class con khi kế thừa và ghi đè thì vẫn trên phân vùng địa chỉ của class cha, nên khi không dùng virtual thì khi gọi các phương thức đã được định nghĩa và ghi đè mới của class con thì sẽ hiện các phương thức của class cha.
+
+3.string
+Sử dụng thư viện: include< string>
+
+4.vector
+Sử dụng thư viện: include< vector>
+
+vector giống như mảng động(linklist) có thể thay đổi được kích thước tuy nhiên các địa chỉ trong vector là liền kề nhau.
+
+Cú pháp: vector <kiểu dữ liệu> ten_vector
+
+Các hàm vector:
+
+Thêm phần tử: ten_vector.push_back();
+array.push_back(5);
+
+Xóa phần tử cuối: ten_vector.pop_back();
+Chèn phần tử: ten_vector.insert(array.begin()+giá trị địa chỉ dịch chuyển tính từ vị trí đầu,giá trị phần tử cần chèn)
+array.insert(array.begin()+2, 8);
+
+Tạo một mảng gồm các phần tử cùng giá trị: ten_vector. assign(số lượng phần tử, giá trị phần tử); ví dụ tạo 4 phần tử có giá trị là 3
+array.assign(4,3);
+
+kích thước vector: ten_vector.size();
+kĩ thuật duyệt( for cải tiến) qua các phần tử:
+
+for(datatype ten_bien : ten_vector){ printf("%d\n", ten_bien); }
+Các địa chỉ trong vector sẽ được gán cho ten_bien và in ra cho đến hết các phần tử trong vector.
+
+BÀI17_LIST_MAP
+1.list
+Sử dụng thư viện: include< list >
+
+list giống vector về các hàm, nhưng khác về cách hoạt động, phần vùng địa chỉ vì địa chỉ của list không phải là các giá trị liền kề nhau.
+
+2.map
+Trong c++ có kiểu dữ liệu auto: là kiểu dữ liệu mà căn cứ vào giá trị đằng sau để tự động chọn kiểu dữ liệu phù hợp
+
+auto 100; // tự động chọn kiểu dữ liệu int
+
+Sử dụng thư viện: include< map >;
+
+Map lưu các cặp key-value, các phần tử trong map sẽ là các cặp key-value. các key sẽ phải là duy nhất và value có thể lặp lại được.
+
+Cú pháp: map <kiểu dữ liệu 1, kiểu dữ liệu 2> ten_map;
+
+kiểu dữ liệu 1 thể hiện key, kiểu dữ liệu 2 thể hiện value.
+có 3 phương thức chính:
+
+Thêm 1 cặp key-value;
+Truy suất một giá trị thông qua key;
+Xóa một cặp key-value khỏi map;
+BÀI 23: Đa Luồng
 
 
 
