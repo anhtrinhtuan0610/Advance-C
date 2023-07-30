@@ -4601,14 +4601,17 @@ Khi class con muốn thêm property và sử dụng lại method của class cha
 
 2.2. TÍNH ĐA HÌNH(polymorphism)
 các method trong class sẽ phân biệt dựa vào các input parameter.
+
 2.3.TEMPLATE
 Template (khuôn mẫu) là một từ khóa trong C++, và là một kiểu dữ liệu trừu tượng tổng quát hóa cho các kiểu dữ liệu int, float, double, bool...
 Template trong C++ có 2 loại đó là function template & class template.
 Template giúp người lập trình định nghĩa tổng quát cho hàm và lớp thay vì phải nạp chồng (overloading) cho từng hàm hay phương thức với những kiểu dữ liệu khác nhau.
+
 2.4. TÍNH TRỪU TƯỢNG(Abstraction)
 trong lập trình hướng đối tượng là một khả năng mà chương trình có thể bỏ qua sự phức tạp bằng cách tập trung vào cốt lõi của thông tin cần xử lý.
 Điều đó có nghĩa, bạn có thể xử lý một đối tượng bằng cách gọi tên một phương thức và thu về kết quả xử lý, mà không cần biết làm cách nào đối tượng đó được các thao tác trong class.
 Ví dụ đơn giản, bạn có thể nấu cơm bằng nồi cơm điện bằng cách rất đơn giản là ấn công tắc nấu, mà không cần biết là bên trong cái nồi cơm điện đó đã làm thế nào mà gạo có thể nấu thành cơm
+
 2.5.TÍNH ĐÓNG GÓI(Encapsulation)
 Khi khai báo property thì phải khai báo ở phạm vi truy cập(acess modifier) là private hoặc protected không được phép khai báo ở public, phòng trường hợp người dùng truy cập trực tiếp và thay đổi giá trị dẫn đến sai chương trình.
 BÀI16
@@ -4652,7 +4655,10 @@ kĩ thuật duyệt( for cải tiến) qua các phần tử:
 for(datatype ten_bien : ten_vector){ printf("%d\n", ten_bien); }
 Các địa chỉ trong vector sẽ được gán cho ten_bien và in ra cho đến hết các phần tử trong vector.
 
+
+
 BÀI17_LIST_MAP
+
 1.list
 Sử dụng thư viện: include< list >
 
@@ -4675,6 +4681,9 @@ có 3 phương thức chính:
 Thêm 1 cặp key-value;
 Truy suất một giá trị thông qua key;
 Xóa một cặp key-value khỏi map;
+
+
+
 BÀI 23: Đa Luồng
 
 
